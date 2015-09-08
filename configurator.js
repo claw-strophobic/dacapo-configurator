@@ -27,6 +27,11 @@ function FieldProto(name, gui, father) {
 	t.div = null; // <-- jQuery-Object of t
 	
 	t.setHandler = function() {
+		var tablist = t.gui.find(".tablist");
+		tablist.append('<li class="' + t.name + '">'+t.name+'</li>')
+		tablist.find('.'+t.name).unbind();
+		tablist.find('.'+t.name).click(t.click);
+
 		t.div.find(".copy-ico").unbind();
 		t.div.find(".del-ico").unbind();
 		t.div.find(".copy-ico").click(t.copy);
@@ -34,7 +39,10 @@ function FieldProto(name, gui, father) {
 		t.div.find(".content-ico").click(t.contentHelper);
 		t.setHelper();
 	};
-
+	t.click = function () {
+		t.gui.find('.fieldset-field-div').hide();
+		$(t.div).show();
+	}
 	t.remove = function() {
 		var str = labels.ask_remove.replace("%field%", t.name);
 		if (window.confirm(str) === true) {
@@ -502,6 +510,7 @@ var gui = function(name) {
 		t.setHandler();
 		for(var f in t.fields) {
 			t.fields[f].setHTML();
+			t.fields[f].click();
 			// $('#dl-'+name).append(this.fields[f].setHTML());
 		}
 	};
