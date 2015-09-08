@@ -1,0 +1,49 @@
+.div-gui {
+	margin-top: 1em;
+	background-color: #6d6a6a;
+}
+.fieldset-gui {
+	margin-top: 3em;
+	background-color: darkgrey;
+}
+.legend-gui {
+	font-size: 1.5em;
+	font-weight: bold;
+	background-color: lightgrey;
+	border: 1px solid black;
+	padding: 0.2em;
+}
+.fieldset-field {
+	margin-top: 2em;
+	background-color: lightgrey;
+}
+.legend-field {
+	font-size: 1.5em;
+	background-color: lightgrey;
+	border: 1px solid black;
+	padding: 0.2em;
+}
+.divframe {
+	border: 1px solid black;
+	margin: 1px 1px 1px 1px;
+}
+nav {
+	position: fixed;
+	border: 1px solid black;
+	margin: 1em 1px 1px 1px;
+	right: 0;
+	background-color: #cccccc;
+}
+nav {
+	padding: 5px;
+	margin: 5px;
+}
+nav ul {
+	padding: 0;
+}
+nav ul li{
+	list-style-type: none;
+	float: left;
+}
+.hidden {display: none;}
+span.ext_state_spec_text {margin-left: 1em; margin-right: 1em;}

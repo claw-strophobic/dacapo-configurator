@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>XML Test</title>
+	<!-- script src="https://code.jquery.com/jquery-1.10.2.js"></script -->
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="swfobject.js"></script>	
+	<link rel="stylesheet" href="configurator.css" type="text/css" />
+</head>
+<body>
+	<noscript>
+		<div style="display:block;background:red;color:white;padding:10px;font-weight:bold;">
+			JavaScript wird für diese Seite benötigt!
+		</div>
+	</noscript>
+
+	<datalist id="meta-fields-list">
+		<option data-value="artist" value="artist">artist</option>
+		<option data-value="composer" value="composer">composer</option>
+		<option data-value="lyricist" value="lyricist">lyricist</option>
+		<option data-value="originalartist" value="originalartist">originalartist</option>
+		<option data-value="performer" value="performer">performer</option>
+	</datalist>
+
+	<nav>
+		<ul class="menubar">
+			<li>
+				<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="Save File" onclick="guis.save();">
+			</li>
+			<li>
+				<img class="save-ico" src="img/Arrow-right-icon.png" height="30" 
+					 title="Scroll to the window-section"
+					 alt="Scroll to the window-section" onclick="jumpTo('#window-marker');">
+			</li>
+			<li>
+				<img class="save-ico" src="img/Arrow-right-icon.png" height="30"
+					 title="Scroll to the fullscreen-section"
+					 alt="Scroll to the fullscreen-section" onclick="jumpTo('#fullscreen-marker');">
+			</li>
+			<li>
+				<img class="save-ico" src="img/Arrow-right-icon.png" height="30"
+					 title="Scroll to the metaData-section"
+					 alt="Scroll to the metaData-section" onclick="jumpTo('#metadata-marker');">
+			</li>
+		</ul>
+
+	</nav>
+	<form>
+		<div id="template-meta-div" class="hidden">
+			<fieldset class="fieldset-meta">
+				<legend class="legend-meta">
+					<span>Feldname</span>
+					<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
+					<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
+				</legend>
+				<div>
+					<dl>
+						<dt><label class="de">Kommentar zu dem Feld</label><label class="en">Comments about the field</label></dt>
+						<dd>
+							<textarea class="comments"></textarea>
+						</dd>
+						<dt><label class="de">Inhalt des Feldes</label><label class="en">Content of the field</label></dt>
+						<dd>
+							<input class="content" type="text" />
+							<img class="content-ico" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
+							<select class="content_helper">
+							</select>
+						</dd>
+						<dt class="condition"><label class="de">wenn</label><label class="en">if</label></dt>
+						<dd class="condition">
+							<select class="operator" >
+								<option class="de" value="notempty">Nicht Leer</option>
+								<option class="de" value="empty">Leer</option>
+								<option class="en" value="notempty">Not Empty</option>
+								<option class="en" value="empty">Empty</option>
+							</select>
+							<input class="operand" list="meta-fields-list" name="operand">
+						</dd>
+					</dl>
+				</div>
+			</fieldset>
+		</div>
+		<div id="template-field-div" class="hidden">
+			<fieldset class="fieldset-field">
+				<legend class="legend-field">
+					<span>Feldname</span>
+					<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
+					<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
+				</legend>
+				<div>
+					<dl>
+						<dt><label class="de">Kommentar zu dem Feld</label><label class="en">Comments about the field</label></dt>
+						<dd>
+							<textarea class="comments"></textarea>
+						</dd>
+						<dt><label class="de">Inhalt des Feldes</label><label class="en">Content of the field</label></dt>
+						<dd>
+							<input class="content" type="text" />
+							<img class="content-ico" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
+							<select class="content_helper">
+							</select>
+						</dd>
+					</dl>
+					<fieldset>
+						<legend class="de">Positionsangaben</legend>
+						<legend class="en">Positioning values</legend>
+						<dl>
+							<dt><label class="de">Position Horizontal</label><label class="en">Horizontal position</label></dt>
+							<dd>
+								<select class="field_pos_h_align" >
+									<option class="de" value="left">Links</option>
+									<option class="de" value="right">Rechts</option>
+									<option class="de" value="center">Zentriert</option>
+									<option class="en" value="left">Left</option>
+									<option class="en" value="right">Right</option>
+									<option class="en" value="center">Center</option>
+								</select>
+								<input class="field_pos_h" type="number" step="1" max="9999" min="1"/>
+								<select class="field_pos_h_ref" ><option value=""></option></select>
+							</dd>
+							<dt><label class="de">Position Vertikal</label><label class="en">Vertical position</label></dt>
+							<dd>
+								<select class="field_pos_v_align" >
+									<option class="de">Oben</option>
+									<option class="de">Unten</option>
+									<option class="de">Mittig</option>
+									<option class="en">Top</option>
+									<option class="en">Bottom</option>
+									<option class="en">Middle</option>
+								</select>
+								<input class="field_pos_v" type="number" step="1" max="9999" min="1"/>
+								<select class="field_pos_v_ref" ><option value=""></option></select>
+							</dd>
+							<dt><label class="de">Layerschicht</label><label class="en">Layer position</label></dt>
+							<dd>
+								<input class="field_zindex" type="number" step="1" max="9999" min="0"/>
+							</dd>
+						</dl>
+					</fieldset>
+					<fieldset>
+						<legend class="de">Stilangaben</legend>
+						<legend class="en">Styling parameters</legend>
+						<dl>
+							<dt><ul><li>
+									<input type="checkbox" name="multiline" value="multiline"/><label for="multiline" class="de">Mehrere Zeilen</label><label for="multiline" class="en">Multi line</label>
+								</li><li>
+									<input type="checkbox" name="splitspaces" value="splitspaces"/><label for="splitspaces" class="de">Leerzeichen umbrechen</label><label for="splitspaces" class="en">Break Spaces</label>
+								</li><li>
+									<input type="checkbox" name="overlay" value="overlay"/><label for="overlay" class="de">Bilder überlagern</label><label for="overlay" class="en">Overlay Pictures</label>
+								</li></ul>
+							</dt>
+							<dd>
+							</dd>
+							<dt><label class="de">Schrift für das Feld (Größe/Farbe/Schrift)</label><label class="en">Font for the field (size/color/font)</label></dt>
+							<dd>
+								<input class="font_size" type="number" step="1" max="9999" min="1"/>
+								<input class="font_color" type="color" />
+								<select class="font_name"></select>
+							</dd>
+							<dd><div class="font_sample"></div></dd>
+						</dl>
+					</fieldset>
+				</div>
+			</fieldset>
+		</div>
+		<div id="debug-output"></div>
+		<div id="doku" class="hidden"><ul></ul></div>
+		<fieldset>
+			<div id="version"></div>
+		</fieldset>
+		<div id="gui" class="div-gui">
+			<fieldset>
+				<legend class="legend-gui">
+					<span>GUI</span>
+				</legend>
+				<fieldset id="window-marker" class="fieldset-gui">
+					<legend class="legend-gui">
+						<span>Window:</span>
+						<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
+					</legend>
+					<div id="window">
+						<dl id="dl-window">
+							<dt><label for="height-window">Höhe / Breite / Hintergundfarbe des Fensters</label></dt>
+							<dd>
+								<input id="height-window" type="number" step="1" max="9999" min="1"/>
+								<input id="width-window" type="number" step="1" max="9999" min="1"/>
+								<input class="background_color" type="color" onchange="guis.window.changeBackground()"/>
+							</dd>							
+							<dt><label for="lyricfont_size-window">Position und Schrift für Lyrics (Größe/Farbe/Schrift)</label></dt>
+							<dd>
+								<input class="font_pos" type="number" step="1" max="9999" min="1"/>
+								<input class="font_size" type="number" step="1" max="9999" min="1"/>
+								<input class="font_color" type="color" />
+								<select class="font_name"></select>
+							</dd>
+							<dd><div class="font_sample"></div></dd>
+						</dl>
+					</div>
+
+				</fieldset>
+				<fieldset id="fullscreen-marker" class="fieldset-gui">
+					<legend class="legend-gui">
+						<span>Fullscreen:</span>
+						<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
+					</legend>
+					<div id="fullscreen">
+						<dl id="dl-fullscreen">
+							<dt><label for="height-fullscreen">Höhe / Breite / Hintergundfarbe</label></dt>
+							<dd>
+								<input id="height-fullscreen" type="number" step="1" max="9999" min="1"/>
+								<input id="width-fullscreen" type="number" step="1" max="9999" min="1"/>
+								<input class="background_color" type="color" onchange="guis.fullscreen.changeBackground()"/>
+							</dd>
+							<dt><label for="lyricfont_size-fullscreen">Position und Schrift für Lyrics (Größe/Farbe/Schrift)</label></dt>
+							<dd>
+								<input class="font_pos" type="number" step="1" max="9999" min="1"/>
+								<input class="font_size" type="number" step="1" max="9999" min="1"/>
+								<input class="font_color" type="color" />
+								<select class="font_name"></select>
+							</dd>
+							<dd><div class="font_sample"></div></dd>
+						</dl>
+					</div>
+				</fieldset>
+			</fieldset>
+		</div>
+		<div class="div-gui">
+			<fieldset id="metadata-marker">
+				<legend class="legend-metadata">
+					<span>MetaData</span>
+					<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
+				</legend>
+				<div id="metadata"  ></div>
+			</fieldset>
+		</div>
+		<fieldset>
+			<legend>Audio Engine:</legend>
+			<div id="audio_engine"></div>
+		</fieldset>
+		<fieldset>
+			<legend>Debug Options:</legend>
+			<div id="debug"></div>
+		</fieldset>
+	</form>
+
+
+	<ul id="tag-list">
+	</ul>
+	<div id="message_output"></div>
+	<span id="objectspan">
+		<object id="fontListSWF" name="fontListSWF"
+				type="application/x-shockwave-flash"
+				data="./FontList.swf" width="1" height="1"
+			>
+			<param name="movie" value="./FontList.swf">
+			<embed src="./FontList.swf" width="1" height="1" />
+			The "You don't have flash" message. Or any other backup content. 
+		</object>
+	</span>
+    <div id="dummyOutput">
+		<table>
+			<thead>
+				<tr><td>Name</td><td>Beispiel</td></tr>
+			</thead>
+			<tbody id="tablebody">
+
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2" id="tablefoot"></td></tr>
+			</tfoot>
+		</table>
+    </div>
+<script type="text/javascript" src="configurator.js"></script>
+</body>
+
+</html>
