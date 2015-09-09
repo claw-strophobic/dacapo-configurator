@@ -1,7 +1,7 @@
 
 var flashsupport = 'Flash wird unterstützt? ';
 var instFonts;
-var lorem = 'Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich';
+var lorem = 'Zwölf Boxkämpfer jagen Viktor \nquer über den großen Sylter Deich';
 
 var labels_deu = {
 	label_field: 'Parameter für das Feld ',
@@ -25,6 +25,20 @@ function FieldProto(name, gui, father) {
 	t.father = father;
 	t.gui = gui; // <-- jQuery-Object of father
 	t.div = null; // <-- jQuery-Object of t
+	t.tabStylesUnselected = {
+      backgroundColor : "lightgrey",
+      fontWeight: "normal",
+	  'box-shadow': "-3px -2px black",
+	  'border-right': "0px",
+	  'margin-top': "0px"
+    };
+	t.tabStylesSelected = {
+      backgroundColor : "antiquewhite",
+      fontWeight: "bold",
+	  'box-shadow': "-3px -2px darkslategrey",
+	  'border-right': "1px",
+	  'margin-top': "2px"
+    };
 	
 	t.setHandler = function() {
 		var tablist = t.gui.find(".tablist");
@@ -40,6 +54,9 @@ function FieldProto(name, gui, father) {
 		t.setHelper();
 	};
 	t.click = function () {
+		var tablist = t.gui.find(".tablist");
+		tablist.find('li').css(t.tabStylesUnselected);
+		tablist.find('.'+ t.name).css(t.tabStylesSelected);
 		t.gui.find('.fieldset-field-div').hide();
 		$(t.div).show();
 	}
@@ -171,12 +188,12 @@ MetaField.prototype.constructor = MetaField;
 
 var Font = function(father, gui) {
 	var t = this;
-	this.gui = gui;
-	this.father = father;
-	this.fontName = '';
-	this.fontSize = 16;
-	this.fontColor = '';
-	this.getOptionList = function() {
+	t.gui = gui;
+	t.father = father;
+	t.fontName = '';
+	t.fontSize = 16;
+	t.fontColor = '';
+	t.getOptionList = function() {
 		var optionList = '';
 		if (t.fontName === null) {
 			t.fontName = '';
@@ -191,7 +208,7 @@ var Font = function(father, gui) {
 		}
 		return optionList;
 	};
-	this.changePreview = function() {
+	t.changePreview = function() {
 		if (typeof t.father.div !== 'undefined' &&
 			typeof t.gui !== 'undefined') {
 			t.father.div.find(".font_sample").first().css({
@@ -204,7 +221,7 @@ var Font = function(father, gui) {
 		return true;
 	};
 
-	this.setHTML = function() {
+	t.setHTML = function() {
 		t.father.div.find(".font_name").append(t.getOptionList());
 		t.father.div.find(".font_color").val(t.fontColor);
 		t.father.div.find(".font_size").val(t.fontSize);
@@ -212,7 +229,7 @@ var Font = function(father, gui) {
 		t.father.div.find(".font_sample").text(lorem);
 	};
 
-	this.setHandler = function() {
+	t.setHandler = function() {
 		t.father.div.find(".font_name").unbind();
 		t.father.div.find(".font_name").change(this.changePreview);
 		t.father.div.find(".font_color").unbind();
@@ -221,13 +238,13 @@ var Font = function(father, gui) {
 		t.father.div.find(".font_size").change(this.changePreview);
 	};
 
-	this.getHTML = function() {
+	t.getHTML = function() {
 		t.fontName = t.father.div.find(".font_name").val();
 		t.fontSize = t.father.div.find(".font_size").val();
 		t.fontColor = t.father.div.find(".font_color").val();
 	};
 
-	this.getXML = function() {
+	t.getXML = function() {
 		var xml = '<font type="text">' + t.fontName + '</font>';
 		xml += '<fontSize type="int">' + t.fontSize + '</fontSize>';
 		xml += '<fontColor type="color">' + hexToRgb(t.fontColor) + '</fontColor>';

@@ -45,5 +45,27 @@ nav ul li{
 	list-style-type: none;
 	float: left;
 }
+.tablist {
+	// background-color: red;
+	float: left;
+	width: 10%;
+	margin: 2.5em 0 0 1em;
+	padding-left: 0;
+}
+.tablist li{
+	padding: 0.5em 0 0.2em 5%;
+	list-style-type: none;
+	background: lightgrey;
+	width: 94%;
+	border: 1px black solid;
+	border-right: 0;
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em;
+	box-shadow: -5px -2px;
+	//float: left;
+}
+.fieldset-field-div {
+	// position: relative;
+}
 .hidden {display: none;}
 span.ext_state_spec_text {margin-left: 1em; margin-right: 1em;}
