@@ -69,3 +69,7 @@ nav ul li{
 }
 .hidden {display: none;}
 span.ext_state_spec_text {margin-left: 1em; margin-right: 1em;}
+#lorem {
+	width: 90%;
+	line-height: 2em;
+}

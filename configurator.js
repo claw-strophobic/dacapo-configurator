@@ -1,7 +1,7 @@
 
 var flashsupport = 'Flash wird unterstützt? ';
 var instFonts;
-var lorem = 'Zwölf Boxkämpfer jagen Viktor \nquer über den großen Sylter Deich';
+var lorem = 'Zwölf Boxkämpfer jagen Viktor \\nquer über den großen Sylter Deich';
 
 var labels_deu = {
 	label_field: 'Parameter für das Feld ',
@@ -212,6 +212,16 @@ var Font = function(father, gui) {
 	t.changePreview = function() {
 		if (typeof t.father.div !== 'undefined' &&
 			typeof t.gui !== 'undefined') {
+			var tmpLorem = lorem;
+			var multiLine = t.father.div.find('input[name=multiline]').prop('checked');
+			var splitSpaces = t.father.div.find('input[name=splitspaces]').prop('checked');
+			if (multiLine === true) {
+				tmpLorem = tmpLorem.replace(/\\n/g, '<br>');
+			}
+			if (splitSpaces === true) {
+				tmpLorem = tmpLorem.replace(/ /g, '<br>');
+			}
+			t.father.div.find(".font_sample").html(tmpLorem);
 			t.father.div.find(".font_sample").first().css({
 				"background-color"	: t.gui.find(".background_color").val(),
 				"font-family"		: t.father.div.find(".font_name").val(),
@@ -564,7 +574,8 @@ var MetaData = function() {
 		if (copyName !== null) {
 			t.fields[copyName] = new MetaField(copyName, t.div, t);
 			t.fields[copyName].setHTML();
-			jumpTo(t.fields[copyName].div);
+			t.fields[copyName].click();
+			// jumpTo(t.fields[copyName].div);
 		}
 	};
 
@@ -573,6 +584,7 @@ var MetaData = function() {
 			if (!t.fields[$(this)[0].localName] && $(this)[0].localName !== 'MP3-Tags') {
 				t.fields[$(this)[0].localName] = new MetaField($(this)[0].localName, t.div, t);
 				t.fields[$(this)[0].localName].grabXMLData(this);
+				t.fields[$(this)[0].localName].click();
 			}
 		});
 		t.setHandler();
@@ -596,6 +608,12 @@ var guis = {
         //               "_blank", "width=200,height=100");
 		myWindow.focus();
 		return false;
+	},
+	changePreview: function() {
+		lorem = $('#lorem').val();
+		console.log("andere preview mit:" + lorem);
+		this.window.changeBackground();
+		this.fullscreen.changeBackground();
 	}
 };
 
@@ -773,6 +791,7 @@ function xml2Str(xmlNode) {
 
 function loadXMLData() {
 	console.log("lade XML...");
+	$('#lorem').val(lorem);
 	$.get( "http://localhost/~tkorell/TEST/dacapo.conf", function( xml ) {
 		var metaliste = $("#meta-fields-list");
 		$(xml).find('metaData').children().each(function() {
