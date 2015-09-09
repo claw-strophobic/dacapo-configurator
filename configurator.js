@@ -93,7 +93,7 @@ function FieldProto(name, gui, father) {
 		cloneObj.div.appendTo('#'+cloneObj.father.name);
 		cloneObj.getHTML();
 		cloneObj.setHandler();
-		jumpTo('#'+id);
+		cloneObj.click();
 	};
 	t.setHelper = function() {
 		// Remove old optionlist
@@ -478,7 +478,7 @@ var gui = function(name) {
 		if (copyName !== null) {
 			t.fields[copyName] = new Field(copyName, t.div, t);
 			t.fields[copyName].setHTML();
-			jumpTo(t.fields[copyName].div);
+			t.fields[copyName].click();
 		}
 	};
 
