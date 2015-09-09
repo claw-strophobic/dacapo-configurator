@@ -178,6 +178,7 @@ function MetaField(name, gui, father) {
 			xml += 'operand="' + t.operand + '" ';
 			xml += 'operator="' + t.operator + '" ';
 		}
+		xml += 'comments="' + t.comments + '" ';
 		xml += '>' + t.content;
 		xml += '</' + t.name + '>';
 		return xml;
@@ -423,6 +424,7 @@ function Field(name, gui, father) {
 		t.getHTML();
 		var xml = '<' + t.name + ' type="dict">';
 		xml += '<value type="text">' + t.content + '</value>';
+		xml += '<comments type="text">' + t.comments + '</comments>';
 		xml += t.font.getXML();
 		xml += t.pos.getXML();
 		xml += '<overlay type="boolean">' + t.overlay + '</overlay>';
