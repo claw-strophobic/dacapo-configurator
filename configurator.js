@@ -61,10 +61,16 @@ function FieldProto(name, gui, father) {
 		$(t.div).show();
 	}
 	t.remove = function() {
+		var tablist = t.gui.find(".tablist");
 		var str = labels.ask_remove.replace("%field%", t.name);
 		if (window.confirm(str) === true) {
 			t.div.remove();
+			tablist.find('.'+ t.name).remove();
 			delete t.father.fields[t.name];
+			for(var f in t.father.fields) {
+				t.father.fields[f].click();
+				break;
+			};
 		};
 	};
 
@@ -126,8 +132,8 @@ function MetaField(name, gui, father) {
 
 	t.getFieldsOptionList = function() {
 		var optionList = '';
-		for(var f in this.father.fields) {
-			optionList += '<option value="' + this.father.fields[f].name + '">'
+		for(var f in t.father.fields) {
+			optionList += '<option value="' + t.father.fields[f].name + '">'
 				+ this.father.fields[f].name + '</option>';
 		}
 		return optionList;
