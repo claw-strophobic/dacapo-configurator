@@ -215,11 +215,13 @@ var Font = function(father, gui) {
 			var tmpLorem = lorem;
 			var multiLine = t.father.div.find('input[name=multiline]').prop('checked');
 			var splitSpaces = t.father.div.find('input[name=splitspaces]').prop('checked');
-			if (multiLine === true) {
-				tmpLorem = tmpLorem.replace(/\\n/g, '<br>');
-			}
-			if (splitSpaces === true) {
-				tmpLorem = tmpLorem.replace(/ /g, '<br>');
+			if (!t.father.div.find(".font_sample").first().hasClass('lyricfont')) {
+				if (multiLine === true) {
+					tmpLorem = tmpLorem.replace(/\\n/g, '<br>');
+				}
+				if (splitSpaces === true) {
+					tmpLorem = tmpLorem.replace(/ /g, '<br>');
+				}
 			}
 			t.father.div.find(".font_sample").html(tmpLorem);
 			t.father.div.find(".font_sample").first().css({
