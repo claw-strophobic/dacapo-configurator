@@ -7,13 +7,15 @@ var labels_deu = {
 	label_field: 'Parameter für das Feld ',
 	ask_remove: 'Wirklich das Feld: %field% löschen?',
 	ask_copy: 'Name für neues Feld:',
-	ask_save: 'Name für Datei:'
+	ask_save: 'Name für Datei:',
+	not_deletable: 'Dieses Feld lässt sich nicht löschen.'
 };
 var labels_eng = {
 	label_field: 'Parameter for the field ',
 	ask_remove: 'Do you really want to remove the field: %field%?',
 	ask_copy: 'The name for the new field:',
-	ask_save: 'Name for File:'
+	ask_save: 'Name for File:',
+	not_deletable: 'This field is not deletable.'
 };
 
 var labels = {};
@@ -25,6 +27,8 @@ function FieldProto(name, gui, father) {
 	t.father = father;
 	t.gui = gui; // <-- jQuery-Object of father
 	t.div = null; // <-- jQuery-Object of t
+	t.deletable = true;
+
 	t.tabStylesUnselected = {
       backgroundColor : "lightgrey",
       fontWeight: "normal",
@@ -62,15 +66,20 @@ function FieldProto(name, gui, father) {
 	}
 	t.remove = function() {
 		var tablist = t.gui.find(".tablist");
-		var str = labels.ask_remove.replace("%field%", t.name);
-		if (window.confirm(str) === true) {
-			t.div.remove();
-			tablist.find('.'+ t.name).remove();
-			delete t.father.fields[t.name];
-			for(var f in t.father.fields) {
-				t.father.fields[f].click();
-				break;
+		if (t.deletable === true) {
+			var str = labels.ask_remove.replace("%field%", t.name);
+			if (window.confirm(str) === true) {
+				t.div.remove();
+				tablist.find('.'+ t.name).remove();
+				delete t.father.fields[t.name];
+				for(var f in t.father.fields) {
+					t.father.fields[f].click();
+					break;
+				};
 			};
+		} else {
+			var str = labels.not_deletable.replace("%field%", t.name);
+			alert(str);
 		};
 	};
 
@@ -158,6 +167,7 @@ function MetaField(name, gui, father) {
 		t.div.find(".operand").val(t.operand);
 		if (t.type !== 'cond') {
 			t.div.find(".condition").hide();
+			t.deletable = false;
 		}
 		t.setHandler();
 
