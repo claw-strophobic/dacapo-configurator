@@ -417,6 +417,10 @@ function Field(name, gui, father) {
 	var origSetHandler = t.setHandler; // save the basis-class-function
 	t.setHandler = function() {
 		origSetHandler(); // call the basis-class-function
+		t.div.find('input[name=multiline]').unbind();
+		t.div.find('input[name=multiline]').click(t.font.changePreview);
+		t.div.find('input[name=splitspaces]').unbind();
+		t.div.find('input[name=splitspaces]').click(t.font.changePreview);
 		t.font.setHandler();
 		t.pos.setHandler();
 	}
