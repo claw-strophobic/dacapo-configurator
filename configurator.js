@@ -78,7 +78,7 @@ function FieldProto(name, gui, father) {
 	};
 	t.clone = function(newName) {
 		// Deep copy
-		t.father.fields[newName] = new Field(newName, t.gui, t.father);
+		t.father.fields[newName] = new t.constructor(newName, t.gui, t.father);
 		var cloneObj = t.father.fields[newName];
 		cloneObj.div = t.div.clone(true);
 		var id = t.father.name + '-' + newName;
@@ -89,10 +89,9 @@ function FieldProto(name, gui, father) {
 			var select = this;
 			$(cloneObj.div).find("select").eq(i).val($(select).val());
 		});
-
 		cloneObj.div.appendTo('#'+cloneObj.father.name);
 		cloneObj.getHTML();
-		cloneObj.setHandler();
+		cloneObj.setHTML();
 		cloneObj.click();
 	};
 	t.setHelper = function() {
@@ -402,6 +401,15 @@ function Field(name, gui, father) {
 		t.div.find('input[name=multiline]').prop('checked', t.multiLine);
 		t.div.find('input[name=splitspaces]').prop('checked', t.splitSpaces);
 		t.div.find('input[name=overlay]').prop('checked', t.overlay);
+		var tmp_id = id + 'multiline';
+		t.div.find('input[name=multiline]').attr("id", tmp_id);
+		t.div.find('label[for$=multiline]').attr("for", tmp_id);
+		tmp_id = id + 'splitspaces';
+		t.div.find('input[name=splitspaces]').attr("id", tmp_id);
+		t.div.find('label[for$=splitspaces]').attr("for", tmp_id);
+		tmp_id = id + 'overlay';
+		t.div.find('input[name=overlay]').attr("id", tmp_id);
+		t.div.find('label[for$=overlay]').attr("for", tmp_id);
 
 		t.font.setHTML();
 		t.font.changePreview();
