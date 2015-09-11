@@ -480,17 +480,21 @@ Field.prototype.constructor = Field;
 
 var gui = function(name) {
 	var t = this;
-	this.name = name;
-	this.div = $('#'+name); // <-- jQuery-Object
-	this.height = 0;
-	this.width = 0;
-	this.background = undefined;
-	this.fields = {};
-	this.lyricFont = new Font(this, this.div);
-	this.fontPos = 0;
+	t.name = name;
+	t.div = $('#'+name); // <-- jQuery-Object
+	t.height = 0;
+	t.width = 0;
+	t.background = undefined;
+	t.fields = {};
+	t.lyricFont = new Font(this, this.div);
+	t.fontPos = 0;
 
-	this.getXML = function() {
-		var xml = '<' + t.name + '><fields type="dict">';
+	t.getXML = function() {
+		var xml = '<' + t.name + '>';
+		xml += '<width type="int">' + t.width + '</width>';
+		xml += '<height type="int">' + t.height + '</height>';
+		xml += '<lyricFontPos type="int">' + t.fontPos + '</lyricFontPos>';
+		xml += '<fields type="dict">';
 		for(var f in t.fields) {
 			//xml = $.parseXML(t.fields[f].font.getXML());
 			xml += t.fields[f].getXML();
@@ -500,20 +504,20 @@ var gui = function(name) {
 		return xml2Str(dom);
 	};
 
-	this.changeBackground = function() {
+	t.changeBackground = function() {
 		t.lyricFont.changePreview();
 		for(var f in t.fields) {
 			t.fields[f].font.changePreview();
 		}
 	};
 
-	this.setHandler = function() {
+	t.setHandler = function() {
 		t.div.parent().find(".new-ico").unbind();
-		t.div.parent().find(".new-ico").click(this.newField);
+		t.div.parent().find(".new-ico").click(t.newField);
 		t.lyricFont.setHandler();
 	}
 
-	this.newField = function() {
+	t.newField = function() {
 		var str = labels.ask_copy;
 		var copyName = 'NewField';
 		copyName = prompt(str, copyName);
@@ -524,7 +528,7 @@ var gui = function(name) {
 		}
 	};
 
-	this.grabXMLData = function(xml) {
+	t.grabXMLData = function(xml) {
 		$(xml).children().each(function() {
 			switch($(this)[0].localName.toLowerCase()) {
 				case 'width':
