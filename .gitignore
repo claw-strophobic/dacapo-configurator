@@ -1,0 +1,23 @@
+###################
+# Crap left by IDEs
+###################
+
+# Vim swap files
+*.swp
+
+# Eclipse project settings
+.project
+.settings
+.buildpath
+
+# Netbeans project settings
+nbproject
+
+###################
+# Local config
+###################
+
+# local mod_rewrite settings etc.
+/.htaccess
+/.htpasswd
+
