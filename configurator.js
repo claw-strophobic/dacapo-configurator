@@ -291,7 +291,7 @@ var PosProto = function(father) {
 	t.changeValues = function() {
 	};
 	t.setHTML = function() {
-		t.father.div.find(".field_pos_h_align").val(t.alignh);
+		t.father.div.find(".field_pos_h_align").val(t.alignH);
 		if (t.posH > 0) {
 			t.father.div.find(".field_pos_h").val(t.posH);
 		}
@@ -504,6 +504,49 @@ var FieldPos = function(father) {
 FieldPos.prototype = new PosProto();
 FieldPos.prototype.constructor = FieldPos;
 
+var PicPos = function(father) {
+	PosProto.apply(this, arguments);
+	var t = this;
+	t.width = 0;
+	t.height = 0;
+
+	t.origSetHTML = t.setHTML; // save the baseclass-function
+	t.setHTML = function() {
+		t.origSetHTML(); // call the baseclass-function
+		t.father.div.find(".pic_width").val(t.width);
+		t.father.div.find(".pic_height").val(t.height);
+	};
+
+	t.origGetHTML = t.getHTML; // save the baseclass-function
+	t.getHTML = function() {
+		t.origGetHTML(); // call the baseclass-function
+		t.width = t.father.div.find(".pic_width").val();
+		t.height = t.father.div.find(".pic_height").val();
+	};
+
+	t.origGetXML = t.getXML; // save the baseclass-function
+	t.getXML = function() {
+		var xml = t.origGetHTML(); // call the baseclass-function
+		if (t.posRefH !== '') {
+			xml += '<width type="int">' + t.width + '</width>';
+		}
+		if (t.posRefV !== '') {
+			xml += '<height type="int">' + t.height + '</height>';
+		}
+		return xml;
+	};
+	t.grabXMLData = function(xml) {
+		$(xml).children().each(function() {
+			if ($(this).attr('type') && $(this).attr('type') == 'int') {
+				t[$(this)[0].localName] = parseInt($(this).text());
+			} else {
+				t[$(this)[0].localName] = $(this).text();
+			}
+		});
+	};
+}
+PicPos.prototype = new PosProto();
+PicPos.prototype.constructor = PicPos;
 
 var gui = function(name) {
 	var t = this;
@@ -513,8 +556,9 @@ var gui = function(name) {
 	t.width = 0;
 	t.background = undefined;
 	t.fields = {};
-	t.lyricFont = new Font(this, this.div);
+	t.lyricFont = new Font(t, t.div);
 	t.fontPos = 0;
+	t.picPos = new PicPos(t);
 
 	t.getXML = function() {
 		var xml = '<' + t.name + '>';
@@ -590,6 +634,8 @@ var gui = function(name) {
 				t.fields[$(this)[0].localName].grabXMLData(this);
 			}
 		});
+		t.picPos.grabXMLData($(xml).find('pictures'));
+		t.picPos.setHTML();
 		// set the HTML-elements to XML-values
 		$('#height-'+name).val(this.height);
 		$('#width-'+name).val(this.width);
