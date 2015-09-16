@@ -279,17 +279,15 @@ var Font = function(father, gui) {
 		return xml;
 	};
 }
-var Pos = function(father) {
+var PosProto = function(father) {
 	var t = this;
 	t.father = father;
 	// Horizontal
 	t.alignH = '';
 	t.posH = 0;
-	t.posRefH = '';
 	// Vertical
 	t.alignV = '';
 	t.posV = 0;
-	t.posRefV = '';
 	t.changeValues = function() {
 	};
 	t.setHTML = function() {
@@ -297,24 +295,18 @@ var Pos = function(father) {
 		if (t.posH > 0) {
 			t.father.div.find(".field_pos_h").val(t.posH);
 		}
-		t.father.div.find(".field_pos_h_ref").val(t.posRefH);
-
 		t.father.div.find(".field_pos_v_align").val(t.alignV);
 		if (t.posV > 0) {
 			t.father.div.find(".field_pos_v").val(t.posV);
 		}
-		t.father.div.find(".field_pos_v_ref").val(t.posRefV);
-
 	};
 
 	t.setHandler = function() {
 		t.father.div.find(".field_pos_h_align").unbind().change(t.changeValues);
 		t.father.div.find(".field_pos_h").unbind().change(t.changeValues);
-		t.father.div.find(".field_pos_h_ref").unbind().change(t.changeValues);
 
 		t.father.div.find(".field_pos_v_align").unbind().change(t.changeValues);
 		t.father.div.find(".field_pos_v").unbind().change(t.changeValues);
-		t.father.div.find(".field_pos_v_ref").unbind().change(t.changeValues);
 
 	};
 
@@ -322,26 +314,18 @@ var Pos = function(father) {
 		// Horizontal
 		t.alignH = t.father.div.find(".field_pos_h_align").val();
 		t.posH = t.father.div.find(".field_pos_h").val();
-		t.posRefH = t.father.div.find(".field_pos_h_ref").val();
 		// Vertical
 		t.alignV = t.father.div.find(".field_pos_v_align").val();
 		t.posV = t.father.div.find(".field_pos_v").val();
-		t.posRefV = t.father.div.find(".field_pos_v_ref").val();
 	};
 
 	t.getXML = function() {
 		// Horizontal
 		var xml = '<alignH type="text">' + t.alignH + '</alignH>';
 		xml += '<posH type="int">' + t.posH + '</posH>';
-		if (t.posRefH !== '') {
-			xml += '<posRefH type="text">' + t.posRefH + '</posRefH>';
-		}
 		// Vertical
 		xml = '<alignV type="text">' + t.alignV + '</alignV>';
 		xml += '<posV type="int">' + t.posV + '</posV>';
-		if (t.posRefV !== '') {
-			xml += '<posRefV type="text">' + t.posRefV + '</posRefV>';
-		}
 		return xml;
 	};
 }
@@ -355,7 +339,7 @@ function Field(name, gui, father) {
 	t.overlay = false;
 	t.splitSpaces = false;
 	t.zIndex = 0;
-	t.pos = new Pos(this);
+	t.pos = new FieldPos(this);
 	t.font = new Font(this, gui);
 
 	t.getFieldsOptionList = function() {
@@ -477,6 +461,49 @@ function Field(name, gui, father) {
 Field.prototype = new FieldProto();
 Field.prototype.constructor = Field;
 // var fields = {};
+
+var FieldPos = function(father) {
+	PosProto.apply(this, arguments);
+	var t = this;
+	t.posRefH = '';
+	t.posRefV = '';
+
+	t.origSetHTML = t.setHTML; // save the baseclass-function
+	t.setHTML = function() {
+		t.origSetHTML(); // call the baseclass-function
+		t.father.div.find(".field_pos_h_ref").val(t.posRefH);
+		t.father.div.find(".field_pos_v_ref").val(t.posRefV);
+	};
+
+	t.origSetHandler = t.setHandler; // save the baseclass-function
+	t.setHandler = function() {
+		t.origSetHandler(); // call the baseclass-function
+		t.father.div.find(".field_pos_h_ref").unbind().change(t.changeValues);
+		t.father.div.find(".field_pos_v_ref").unbind().change(t.changeValues);
+	};
+
+	t.origGetHTML = t.getHTML; // save the baseclass-function
+	t.getHTML = function() {
+		t.origGetHTML(); // call the baseclass-function
+		t.posRefH = t.father.div.find(".field_pos_h_ref").val();
+		t.posRefV = t.father.div.find(".field_pos_v_ref").val();
+	};
+
+	t.origGetXML = t.getXML; // save the baseclass-function
+	t.getXML = function() {
+		var xml = t.origGetHTML(); // call the baseclass-function
+		if (t.posRefH !== '') {
+			xml += '<posRefH type="text">' + t.posRefH + '</posRefH>';
+		}
+		if (t.posRefV !== '') {
+			xml += '<posRefV type="text">' + t.posRefV + '</posRefV>';
+		}
+		return xml;
+	};
+}
+FieldPos.prototype = new PosProto();
+FieldPos.prototype.constructor = FieldPos;
+
 
 var gui = function(name) {
 	var t = this;
