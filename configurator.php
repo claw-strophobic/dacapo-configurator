@@ -1,3 +1,8 @@
+<?php
+	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
+	require_once dirname(__FILE__) . '/configurator_meta.php';
+	require_once dirname(__FILE__) . '/configurator_field.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,14 +19,6 @@
 			JavaScript wird für diese Seite benötigt!
 		</div>
 	</noscript>
-
-	<datalist id="meta-fields-list">
-		<option data-value="artist" value="artist">artist</option>
-		<option data-value="composer" value="composer">composer</option>
-		<option data-value="lyricist" value="lyricist">lyricist</option>
-		<option data-value="originalartist" value="originalartist">originalartist</option>
-		<option data-value="performer" value="performer">performer</option>
-	</datalist>
 
 	<nav>
 		<ul class="menubar">
@@ -47,123 +44,6 @@
 
 	</nav>
 	<form>
-		<div id="template-meta-div" class="hidden fieldset-field-div">
-			<fieldset class="fieldset-meta">
-				<legend class="legend-meta">
-					<span>Feldname</span>
-					<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
-					<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
-				</legend>
-				<div>
-					<dl>
-						<dt><label class="de">Kommentar zu dem Feld</label><label class="en">Comments about the field</label></dt>
-						<dd>
-							<textarea class="comments"></textarea>
-						</dd>
-						<dt><label class="de">Inhalt des Feldes</label><label class="en">Content of the field</label></dt>
-						<dd>
-							<input class="content" type="text" />
-							<img class="content-ico" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
-							<select class="content_helper">
-							</select>
-						</dd>
-						<dt class="condition"><label class="de">wenn</label><label class="en">if</label></dt>
-						<dd class="condition">
-							<select class="operator" >
-								<option class="de" value="notempty">Nicht Leer</option>
-								<option class="de" value="empty">Leer</option>
-								<option class="en" value="notempty">Not Empty</option>
-								<option class="en" value="empty">Empty</option>
-							</select>
-							<input class="operand" list="meta-fields-list" name="operand">
-						</dd>
-					</dl>
-				</div>
-			</fieldset>
-		</div>
-		<div id="template-field-div" class="hidden fieldset-field-div">
-			<fieldset class="fieldset-field">
-				<legend class="legend-field">
-					<span>Feldname</span>
-					<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
-					<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
-				</legend>
-				<div>
-					<dl>
-						<dt><label class="de">Kommentar zu dem Feld</label><label class="en">Comments about the field</label></dt>
-						<dd>
-							<textarea class="comments"></textarea>
-						</dd>
-						<dt><label class="de">Inhalt des Feldes</label><label class="en">Content of the field</label></dt>
-						<dd>
-							<input class="content" type="text" />
-							<img class="content-ico" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
-							<select class="content_helper">
-							</select>
-						</dd>
-					</dl>
-					<fieldset>
-						<legend class="de">Positionsangaben</legend>
-						<legend class="en">Positioning values</legend>
-						<dl>
-							<dt><label class="de">Position Horizontal</label><label class="en">Horizontal position</label></dt>
-							<dd>
-								<select class="field_pos_h_align" >
-									<option class="de" value="left">Links</option>
-									<option class="de" value="right">Rechts</option>
-									<option class="de" value="center">Zentriert</option>
-									<option class="en" value="left">Left</option>
-									<option class="en" value="right">Right</option>
-									<option class="en" value="center">Center</option>
-								</select>
-								<input class="field_pos_h" type="number" step="1" max="9999" min="1"/>
-								<select class="field_pos_h_ref" ><option value=""></option></select>
-							</dd>
-							<dt><label class="de">Position Vertikal</label><label class="en">Vertical position</label></dt>
-							<dd>
-								<select class="field_pos_v_align" >
-									<option class="de" value="top">Oben</option>
-									<option class="de" value="bottom">Unten</option>
-									<option class="de" value="center">Mittig</option>
-									<option class="en" value="top">Top</option>
-									<option class="en" value="bottom">Bottom</option>
-									<option class="en" value="center">Middle</option>
-								</select>
-								<input class="field_pos_v" type="number" step="1" max="9999" min="1"/>
-								<select class="field_pos_v_ref" ><option value=""></option></select>
-							</dd>
-							<dt><label class="de">Layerschicht</label><label class="en">Layer position</label></dt>
-							<dd>
-								<input class="field_zindex" type="number" step="1" max="9999" min="0"/>
-							</dd>
-						</dl>
-					</fieldset>
-					<fieldset>
-						<legend class="de">Stilangaben</legend>
-						<legend class="en">Styling parameters</legend>
-						<dl>
-							<dt><ul><li>
-									<input type="checkbox" name="multiline" value="multiline"/><label for="multiline" class="de">Mehrere Zeilen</label><label for="multiline" class="en">Multi line</label>
-								</li><li>
-									<input type="checkbox" name="splitspaces" value="splitspaces"/><label for="splitspaces" class="de">Leerzeichen umbrechen</label><label for="splitspaces" class="en">Break Spaces</label>
-								</li><li>
-									<input type="checkbox" name="overlay" value="overlay"/><label for="overlay" class="de">Bilder überlagern</label><label for="overlay" class="en">Overlay Pictures</label>
-								</li></ul>
-							</dt>
-							<dd>
-							</dd>
-							<dt><label class="de">Schrift für das Feld (Größe/Farbe/Schrift)</label><label class="en">Font for the field (size/color/font)</label></dt>
-							<dd>
-								<input class="font_size" type="number" step="1" max="9999" min="1"/>
-								<input class="font_color" type="color" />
-								<select class="font_name"></select>
-							</dd>
-							<dd><div class="font_sample"></div></dd>
-						</dl>
-					</fieldset>
-				</div>
-			</fieldset>
-		</div>
 		<div id="debug-output"></div>
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
