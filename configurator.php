@@ -207,19 +207,6 @@
 			The "You don't have flash" message. Or any other backup content. 
 		</object>
 	</span>
-    <div id="dummyOutput">
-		<table>
-			<thead>
-				<tr><td>Name</td><td>Beispiel</td></tr>
-			</thead>
-			<tbody id="tablebody">
-
-			</tbody>
-			<tfoot>
-				<tr><td colspan="2" id="tablefoot"></td></tr>
-			</tfoot>
-		</table>
-    </div>
 <script type="text/javascript" src="configurator.js"></script>
 </body>
 
