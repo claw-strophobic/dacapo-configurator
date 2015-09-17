@@ -19,7 +19,7 @@
 		</div>
 	</noscript>
 
-	<nav>
+	<!-- nav>
 		<ul class="menubar">
 			<li>
 				<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="Save File" onclick="guis.save();">
@@ -41,35 +41,47 @@
 			</li>
 		</ul>
 
-	</nav>
+	</nav -->
 	<form>
 		<div id="debug-output"></div>
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
 			<div id="version"></div>
 		</fieldset>
-		<div id="gui" class="div-gui">
-			<fieldset>
-				<legend class="legend-gui">
-					<span>GUI</span>
-				</legend>
-				<div>
-					<input id="lorem" type="text"/>
-					<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="change preview" onclick="guis.changePreview();">
-				</div>
-				<?php	require_once dirname(__FILE__) . '/configurator_gui_window.php'; ?>
-				<?php	require_once dirname(__FILE__) . '/configurator_gui_fullscreen.php'; ?>
-			</fieldset>
+		<div>
+			<nav id="menu">
+				<ul>
+					<li onclick="guis.menuClick(1);">GUI Window</li>
+					<li onclick="guis.menuClick(2);">GUI Fullscreen</li>
+					<li onclick="guis.menuClick(3);">MetData</li>
+					<li onclick="guis.menuClick(4);">Audio & Debug</li>
+				</ul>
+			</nav>
+			<div id="gui" class="div-gui hideableTab">
+				<fieldset>
+					<legend class="legend-gui">
+						<span>GUI</span>
+					</legend>
+					<div>
+						<input id="lorem" type="text"/>
+						<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="change preview" onclick="guis.changePreview();">
+					</div>
+					<?php	require_once dirname(__FILE__) . '/configurator_gui_window.php'; ?>
+					<?php	require_once dirname(__FILE__) . '/configurator_gui_fullscreen.php'; ?>
+				</fieldset>
+			</div>
+			<?php	require_once dirname(__FILE__) . '/configurator_meta.php'; ?>
+			<div id="audio-marker" class="div-gui hideableTab">
+				<fieldset>
+					<legend>Audio Engine:</legend>
+					<div id="audio_engine"></div>
+				</fieldset>
+				<fieldset>
+					<legend>Debug Options:</legend>
+					<div id="debug"></div>
+				</fieldset>
+			</div>
 		</div>
-		<?php	require_once dirname(__FILE__) . '/configurator_meta.php'; ?>
-		<fieldset>
-			<legend>Audio Engine:</legend>
-			<div id="audio_engine"></div>
-		</fieldset>
-		<fieldset>
-			<legend>Debug Options:</legend>
-			<div id="debug"></div>
-		</fieldset>
 	</form>
 
 

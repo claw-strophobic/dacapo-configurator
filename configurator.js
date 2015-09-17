@@ -722,6 +722,25 @@ var guis = {
 		console.log("andere preview mit:" + lorem);
 		this.window.changeBackground();
 		this.fullscreen.changeBackground();
+	},
+	menuClick: function(e) {
+		$('.hideableTab').hide();
+		switch (e) {
+			case 1:		// GUI Window
+				$('#gui').show();
+				$('#window-marker').show();
+				break;
+			case 2:		// GUI Fullscreen
+				$('#gui').show();
+				$('#fullscreen-marker').show();
+				break;
+			case 3:		// MetaData
+				$('#metadata-marker').show();
+				break;
+			case 4:		// Audio & Debug
+				$('#audio-marker').show();
+				break;
+		}
 	}
 };
 
@@ -916,6 +935,7 @@ function loadXMLData() {
 		guis.window.grabXMLData($(xml).find('gui').find('window'));
 		guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
 		guis.meta.grabXMLData($(xml).find('metaData'));
+		guis.menuClick(1);
 
 	});
 

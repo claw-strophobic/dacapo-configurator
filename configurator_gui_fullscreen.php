@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<fieldset id="fullscreen-marker" class="fieldset-gui">
+<fieldset id="fullscreen-marker" class="fieldset-gui hideableTab">
 	<legend class="legend-gui">
 		<span>Fullscreen:</span>
 		<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
