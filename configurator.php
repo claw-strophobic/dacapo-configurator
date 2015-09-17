@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<title>XML Test</title>
 	<!-- script src="https://code.jquery.com/jquery-1.10.2.js"></script -->
-	<script type="text/javascript" src="../lib/jquery.js"></script>
+	<script type="text/javascript" src="../lib/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="swfobject.js"></script>	
 	<link rel="stylesheet" href="configurator.css" type="text/css" />
 </head>
