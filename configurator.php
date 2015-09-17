@@ -1,6 +1,5 @@
 <?php
 	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
-	require_once dirname(__FILE__) . '/configurator_meta.php';
 	require_once dirname(__FILE__) . '/configurator_field.php';
 ?>
 <!doctype html>
@@ -58,131 +57,11 @@
 					<input id="lorem" type="text"/>
 					<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="change preview" onclick="guis.changePreview();">
 				</div>
-				<fieldset id="window-marker" class="fieldset-gui">
-					<legend class="legend-gui">
-						<span>Window:</span>
-						<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
-					</legend>
-					<div id="window">
-						<dl id="dl-window">
-							<dt><label for="height-window">Höhe / Breite / Hintergundfarbe des Fensters</label></dt>
-							<dd>
-								<input id="height-window" type="number" step="1" max="9999" min="1"/>
-								<input id="width-window" type="number" step="1" max="9999" min="1"/>
-								<input class="background_color" type="color" onchange="guis.window.changeBackground()"/>
-							</dd>							
-							<dt>
-								<label class="de" for="pic-left-window">Bildbereichs im Fensters: Linke- & Obere- Position / Max. Breite & Höhe / Ausrichtung</label>
-								<label class="en" for="pic-left-window">Picture-area in Window: Left- & Top- Position / Max. Width & Height / Alignment</label>
-							</dt>
-							<dd>
-								<input class="field_pos_h" type="number" step="1" max="9999" min="0"/>
-								<input class="field_pos_v" type="number" step="1" max="9999" min="0"/>
-								<span> / </span>
-								<input class="pic_height" type="number" step="1" max="9999" min="1"/>
-								<input class="pic_width" type="number" step="1" max="9999" min="1"/>
-								<span> / </span>
-								<select class="field_pos_v_align" >
-									<option class="de" value="top">Oben</option>
-									<option class="de" value="bottom">Unten</option>
-									<option class="de" value="center">Mittig</option>
-									<option class="en" value="top">Top</option>
-									<option class="en" value="bottom">Bottom</option>
-									<option class="en" value="center">Middle</option>
-								</select>
-								<select class="field_pos_h_align" >
-									<option class="de" value="left">Links</option>
-									<option class="de" value="right">Rechts</option>
-									<option class="de" value="center">Zentriert</option>
-									<option class="en" value="left">Left</option>
-									<option class="en" value="right">Right</option>
-									<option class="en" value="center">Center</option>
-								</select>
-							</dd>
-							<dt><label for="lyricfont_size-window">Position und Schrift für Lyrics (Größe/Farbe/Schrift)</label></dt>
-							<dd>
-								<input class="font_pos" type="number" step="1" max="9999" min="1"/>
-								<input class="font_size" type="number" step="1" max="9999" min="1"/>
-								<input class="font_color" type="color" />
-								<select class="font_name"></select>
-							</dd>
-							<dd><div class="font_sample lyricfont"></div></dd>
-						</dl>
-						<ul class="tablist">
-
-						</ul>
-					</div>
-
-				</fieldset>
-				<fieldset id="fullscreen-marker" class="fieldset-gui">
-					<legend class="legend-gui">
-						<span>Fullscreen:</span>
-						<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
-					</legend>
-					<div id="fullscreen">
-						<dl id="dl-fullscreen">
-							<dt><label for="height-fullscreen">Höhe / Breite / Hintergundfarbe</label></dt>
-							<dd>
-								<input id="height-fullscreen" type="number" step="1" max="9999" min="1"/>
-								<input id="width-fullscreen" type="number" step="1" max="9999" min="1"/>
-								<input class="background_color" type="color" onchange="guis.fullscreen.changeBackground()"/>
-							</dd>
-							<dt>
-								<label class="de" for="pic-left-window">Bildbereichs im Fullscreen: Linke- & Obere- Position / Max. Breite & Höhe / Ausrichtung</label>
-								<label class="en" for="pic-left-window">Picture-area in Fullscreen: Left- & Top- Position / Max. Width & Height / Alignment</label>
-							</dt>
-							<dd>
-								<input class="field_pos_h" type="number" step="1" max="9999" min="0"/>
-								<input class="field_pos_v" type="number" step="1" max="9999" min="0"/>
-								<span> / </span>
-								<input class="pic_height" type="number" step="1" max="9999" min="1"/>
-								<input class="pic_width" type="number" step="1" max="9999" min="1"/>
-								<span> / </span>
-								<select class="field_pos_v_align" >
-									<option class="de" value="top">Oben</option>
-									<option class="de" value="bottom">Unten</option>
-									<option class="de" value="center">Mittig</option>
-									<option class="en" value="top">Top</option>
-									<option class="en" value="bottom">Bottom</option>
-									<option class="en" value="center">Middle</option>
-								</select>
-								<select class="field_pos_h_align" >
-									<option class="de" value="left">Links</option>
-									<option class="de" value="right">Rechts</option>
-									<option class="de" value="center">Zentriert</option>
-									<option class="en" value="left">Left</option>
-									<option class="en" value="right">Right</option>
-									<option class="en" value="center">Center</option>
-								</select>
-							</dd>
-							<dt><label for="lyricfont_size-fullscreen">Position und Schrift für Lyrics (Größe/Farbe/Schrift)</label></dt>
-							<dd>
-								<input class="font_pos" type="number" step="1" max="9999" min="1"/>
-								<input class="font_size" type="number" step="1" max="9999" min="1"/>
-								<input class="font_color" type="color" />
-								<select class="font_name"></select>
-							</dd>
-							<dd><div class="font_sample lyricfont"></div></dd>
-						</dl>
-						<ul class="tablist">
-
-						</ul>
-					</div>
-				</fieldset>
+				<?php	require_once dirname(__FILE__) . '/configurator_gui_window.php'; ?>
+				<?php	require_once dirname(__FILE__) . '/configurator_gui_fullscreen.php'; ?>
 			</fieldset>
 		</div>
-		<div class="div-gui">
-			<fieldset id="metadata-marker">
-				<legend class="legend-metadata">
-					<span>MetaData</span>
-					<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
-				</legend>
-				<div id="metadata"  >
-					<ul class="tablist">
-					</ul>
-				</div>
-			</fieldset>
-		</div>
+		<?php	require_once dirname(__FILE__) . '/configurator_meta.php'; ?>
 		<fieldset>
 			<legend>Audio Engine:</legend>
 			<div id="audio_engine"></div>
