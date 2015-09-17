@@ -2,6 +2,7 @@
 var flashsupport = 'Flash wird unterstützt? ';
 var instFonts;
 var lorem = 'Zwölf Boxkämpfer jagen Viktor \\nquer über den großen Sylter Deich';
+var configFile = "http://localhost/~tkorell/TEST/XML/dacapo.conf";
 
 var labels_deu = {
 	label_field: 'Parameter für das Feld ',
@@ -899,7 +900,7 @@ function xml2Str(xmlNode) {
 function loadXMLData() {
 	console.log("lade XML...");
 	$('#lorem').val(lorem);
-	$.get( "http://localhost/~tkorell/TEST/dacapo.conf", function( xml ) {
+	$.get( configFile, function( xml ) {
 		var metaliste = $("#meta-fields-list");
 		$(xml).find('metaData').children().each(function() {
 			if ($(this).attr('type') === 'cond') {
