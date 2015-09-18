@@ -938,24 +938,30 @@ function xml2Str(xmlNode) {
 function loadXMLData() {
 	console.log("lade XML...");
 	$('#lorem').val(lorem);
-	$.get( configFile, function( xml ) {
-		var metaliste = $("#meta-fields-list");
-		$(xml).find('metaData').children().each(function() {
-			if ($(this).attr('type') === 'cond') {
-				metaliste.prepend('<option data-value="' + $(this)[0].localName
-						+ 'artist" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
-			}
-		});
-		prepareDoku($(xml).find('doku'));
-		prepareVersion($(xml).find('version'));
-		prepareAudioEngine($(xml).find('audio_engine'));
-		prepareDebug($(xml).find('debug'));
+	var getData = {
+		url: configFile,
+		data: '',
+		success: function( xml ) {
+			var metaliste = $("#meta-fields-list");
+			$(xml).find('metaData').children().each(function() {
+				if ($(this).attr('type') === 'cond') {
+					metaliste.prepend('<option data-value="' + $(this)[0].localName
+							+ 'artist" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
+				}
+			});
+			prepareDoku($(xml).find('doku'));
+			prepareVersion($(xml).find('version'));
+			prepareAudioEngine($(xml).find('audio_engine'));
+			prepareDebug($(xml).find('debug'));
 
-		guis.window.grabXMLData($(xml).find('gui').find('window'));
-		guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
-		guis.meta.grabXMLData($(xml).find('metaData'));
-		guis.menuClick(1);
+			guis.window.grabXMLData($(xml).find('gui').find('window'));
+			guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
+			guis.meta.grabXMLData($(xml).find('metaData'));
+			guis.menuClick(1);
 
-	});
+		},
+		dataType: 'xml'
+	}
+	$.ajax(getData);
 
 }
