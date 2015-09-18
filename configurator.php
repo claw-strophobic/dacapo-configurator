@@ -53,7 +53,7 @@
 				<ul>
 					<li id="nav-window" onclick="guis.menuClick(1);"><span>GUI Window</span></li>
 					<li id="nav-fullscreen" onclick="guis.menuClick(2);"><span>GUI Fullscreen</span></li>
-					<li id="nav-meta" onclick="guis.menuClick(3);"><span>MetData</span></li>
+					<li id="nav-meta" onclick="guis.menuClick(3);"><span>MetaData</span></li>
 					<li id="nav-audio" onclick="guis.menuClick(4);"><span>Audio & Debug</span></li>
 				</ul>
 			</nav>
