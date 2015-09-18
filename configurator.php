@@ -51,14 +51,14 @@
 		<div>
 			<nav id="menu">
 				<ul>
-					<li onclick="guis.menuClick(1);">GUI Window</li>
-					<li onclick="guis.menuClick(2);">GUI Fullscreen</li>
-					<li onclick="guis.menuClick(3);">MetData</li>
-					<li onclick="guis.menuClick(4);">Audio & Debug</li>
+					<li id="nav-window" onclick="guis.menuClick(1);"><span>GUI Window</span></li>
+					<li id="nav-fullscreen" onclick="guis.menuClick(2);"><span>GUI Fullscreen</span></li>
+					<li id="nav-meta" onclick="guis.menuClick(3);"><span>MetData</span></li>
+					<li id="nav-audio" onclick="guis.menuClick(4);"><span>Audio & Debug</span></li>
 				</ul>
 			</nav>
 			<div id="gui" class="div-gui hideableTab">
-				<fieldset>
+				<fieldset class="border-fieldset">
 					<legend class="legend-gui">
 						<span>GUI</span>
 					</legend>
@@ -72,13 +72,15 @@
 			</div>
 			<?php	require_once dirname(__FILE__) . '/configurator_meta.php'; ?>
 			<div id="audio-marker" class="div-gui hideableTab">
-				<fieldset>
-					<legend>Audio Engine:</legend>
-					<div id="audio_engine"></div>
-				</fieldset>
-				<fieldset>
-					<legend>Debug Options:</legend>
-					<div id="debug"></div>
+				<fieldset class="border-fieldset">
+					<fieldset>
+						<legend>Audio Engine:</legend>
+						<div id="audio_engine"></div>
+					</fieldset>
+					<fieldset>
+						<legend>Debug Options:</legend>
+						<div id="debug"></div>
+					</fieldset>
 				</fieldset>
 			</div>
 		</div>

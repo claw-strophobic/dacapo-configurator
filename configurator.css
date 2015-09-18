@@ -1,23 +1,38 @@
-.fieldset-gui {
-	margin-top: 3em;
+.border-fieldset {
+	margin: 1em;
+	//background-color: darkgrey;
+}
+.fieldset-gui,
+.fieldset-meta {
+	margin-top: 2em;
 	background-color: darkgrey;
 }
-.legend-gui {
+.legend-gui,
+.legend-metadata {
 	font-size: 1.5em;
 	font-weight: bold;
 	background-color: lightgrey;
 	border: 1px solid black;
 	padding: 0.2em;
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
+	border-bottom-left-radius: 0.3em;
+	border-bottom-right-radius: 0.3em;
 }
 .fieldset-field {
 	margin-top: 2em;
 	background-color: lightgrey;
 }
-.legend-field {
+.legend-field,
+.legend-meta {
 	font-size: 1.5em;
 	background-color: lightgrey;
 	border: 1px solid black;
 	padding: 0.2em;
+	border-top-left-radius: 0.3em;
+	border-top-right-radius: 0.3em;
+	border-bottom-left-radius: 0.3em;
+	border-bottom-right-radius: 0.3em;
 }
 .divframe {
 	border: 1px solid black;
@@ -39,6 +54,7 @@ nav {
 	left: 0;
 	background-color: transparent;
 }
+
 nav ul {
 	padding: 0;
 	margin: 0;
@@ -47,13 +63,23 @@ nav ul {
 nav ul li{
 	list-style-type: none;
 	float: left;
+	background: lightgrey;
 	padding-left: 1em;
 	padding-right: 1em;
 	border: 1px black solid;
-	border-right: 0;
+	border-bottom: 0px;
 	border-top-left-radius: 1em;
 	border-top-right-radius: 1em;
-	box-shadow: -5px -2px;
+	box-shadow: 5px -2px;
+}
+nav ul li span{
+	height: 1.5em;
+	margin-top: 0.5em;
+	display: block;
+	vertical-align: middle;
+}
+nav ul li:hover{
+	cursor: pointer;
 }
 .tablist {
 	// background-color: red;
@@ -73,6 +99,9 @@ nav ul li{
 	border-bottom-left-radius: 1em;
 	box-shadow: -5px -2px;
 	//float: left;
+}
+.tablist li:hover{
+	cursor: pointer;
 }
 .fieldset-field-div {
 	// position: relative;

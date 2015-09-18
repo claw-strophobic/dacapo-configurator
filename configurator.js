@@ -33,14 +33,14 @@ function FieldProto(name, gui, father) {
 	t.tabStylesUnselected = {
       backgroundColor : "lightgrey",
       fontWeight: "normal",
-	  'box-shadow': "-3px -2px black",
+	  'box-shadow': "-3px 2px black",
 	  'border-right': "0px",
 	  'margin-top': "0px"
     };
 	t.tabStylesSelected = {
       backgroundColor : "antiquewhite",
       fontWeight: "bold",
-	  'box-shadow': "-3px -2px darkslategrey",
+	  'box-shadow': "-3px -2px black",
 	  'border-right': "1px",
 	  'margin-top': "2px"
     };
@@ -340,8 +340,8 @@ function Field(name, gui, father) {
 	t.overlay = false;
 	t.splitSpaces = false;
 	t.zIndex = 0;
-	t.pos = new FieldPos(this);
-	t.font = new Font(this, gui);
+	t.pos = new FieldPos(t);
+	t.font = new Font(t, gui);
 
 	t.getFieldsOptionList = function() {
 		var optionList = '';
@@ -350,7 +350,7 @@ function Field(name, gui, father) {
 				+ t.father.fields[f].name + '</option>';
 		}
 		return optionList;
-	}
+	};
 	t.grabXMLData = function(xml) {
 		$(xml).children().each(function() {
 			switch($(this)[0].localName.toLowerCase()) {
@@ -703,6 +703,19 @@ var guis = {
 	window: new gui('window'),
 	fullscreen: new gui('fullscreen'),
 	meta: new MetaData(),
+	tabStylesUnselected: {
+      backgroundColor : "lightgrey",
+      fontWeight: "normal",
+	  'box-shadow': "5px -2px black",
+	  'margin-right': "0px",
+    },
+	tabStylesSelected: {
+      backgroundColor : "antiquewhite",
+      fontWeight: "bold",
+	  'box-shadow': "5px -2px black",
+	  'margin-right': "2px",
+    },
+
 	save: function(){
 		var xml = '<dacapo_preferences><gui>';
 		xml += this.window.getXML();
@@ -725,20 +738,26 @@ var guis = {
 	},
 	menuClick: function(e) {
 		$('.hideableTab').hide();
+		$('#menu').find('li').css(guis.tabStylesUnselected);
+
 		switch (e) {
 			case 1:		// GUI Window
 				$('#gui').show();
 				$('#window-marker').show();
+				$('#nav-window').css(guis.tabStylesSelected);
 				break;
 			case 2:		// GUI Fullscreen
 				$('#gui').show();
 				$('#fullscreen-marker').show();
+				$('#nav-fullscreen').css(guis.tabStylesSelected);
 				break;
 			case 3:		// MetaData
 				$('#metadata-marker').show();
+				$('#nav-meta').css(guis.tabStylesSelected);
 				break;
 			case 4:		// Audio & Debug
 				$('#audio-marker').show();
+				$('#nav-audio').css(guis.tabStylesSelected);
 				break;
 		}
 	}

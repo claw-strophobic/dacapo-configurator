@@ -39,7 +39,7 @@
 
 
 <div class="div-gui">
-	<fieldset id="metadata-marker" class="hideableTab">
+	<fieldset id="metadata-marker" class="hideableTab border-fieldset">
 		<legend class="legend-metadata">
 			<span>MetaData</span>
 			<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
