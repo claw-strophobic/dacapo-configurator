@@ -280,6 +280,45 @@ var Font = function(father, gui) {
 		return xml;
 	};
 }
+var LyricFont = function(father, gui) {
+	Font.apply(this, arguments);
+	var t = this;
+	t.posV = 0;
+	t.alignH = undefined;
+
+	t.orgGetHTML = t.getHTML; // save the basis-class-function
+	t.getHTML = function() {
+		t.orgGetHTML(); // call the basis-class-function
+		t.posV = t.father.div.find(".font_pos").val();
+		t.alignH = t.father.div.find(".font_pos_h_align").val();
+	}
+	t.orgSetHTML = t.setHTML; // save the basis-class-function
+	t.setHTML = function() {
+		t.orgSetHTML(); // call the basis-class-function
+		t.father.div.find(".font_pos").val(t.posV);
+		t.father.div.find(".font_pos_h_align").val(t.alignH);
+	}
+	t.grabXMLData = function(xml) {
+		$(xml).children().each(function() {
+			if ($(this).attr('type') == 'color') {
+				t.fontColor = rgbToHex($(this).text());
+			} else {
+				if ($(this).attr('type') && $(this).attr('type') == 'int') {
+					t[$(this)[0].localName] = parseInt($(this).text());
+				} else {
+					t[$(this)[0].localName] = $(this).text();
+				}
+			}
+		});
+	}
+	t.orgGetXML = t.getXML; // save the basis-class-function
+	t.getXML = function() {
+		t.orgGetXML(); // call the basis-class-function
+	}
+}
+LyricFont.prototype = new Font();
+LyricFont.prototype.constructor = LyricFont;
+
 var PosProto = function(father) {
 	var t = this;
 	t.father = father;
@@ -557,7 +596,7 @@ var gui = function(name) {
 	t.width = 0;
 	t.background = undefined;
 	t.fields = {};
-	t.lyricFont = new Font(t, t.div);
+	t.lyricFont = new LyricFont(t, t.div);
 	t.fontPos = 0;
 	t.picPos = new PicPos(t);
 
@@ -612,18 +651,6 @@ var gui = function(name) {
 				case 'backgroundcolor':
 					t.background = rgbToHex($(this).text());
 					break;
-				case 'lyricfontpos':
-					t.fontPos = parseInt($(this).text());
-					break;
-				case 'lyricfont':
-					t.lyricFont.fontName = $(this).text();
-					break;
-				case 'lyricfontsize':
-					t.lyricFont.fontSize = parseInt($(this).text());
-					break;
-				case 'lyricfontcolor':
-					t.lyricFont.fontColor = rgbToHex($(this).text());
-					break;
 				default:
 					break;
 			}
@@ -635,6 +662,7 @@ var gui = function(name) {
 				t.fields[$(this)[0].localName].grabXMLData(this);
 			}
 		});
+		t.lyricFont.grabXMLData($(xml).find('lyricFont'));
 		t.picPos.grabXMLData($(xml).find('pictures'));
 		t.picPos.setHTML();
 		// set the HTML-elements to XML-values
