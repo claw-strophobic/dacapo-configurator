@@ -1,6 +1,5 @@
 .border-fieldset {
 	margin: 1em;
-	//background-color: darkgrey;
 }
 .fieldset-gui,
 .fieldset-meta {
@@ -41,12 +40,10 @@
 .div-gui {
 	float: left;
 	width: 100%;
-	//margin-top: 1em;
 	background-color: #6d6a6a;
 
 }
 nav {
-	// position: fixed;
 	margin-top: 1em;
 	float: left;
 	border: 0;
@@ -82,7 +79,6 @@ nav ul li:hover{
 	cursor: pointer;
 }
 .tablist {
-	// background-color: red;
 	float: left;
 	width: 10%;
 	margin: 2.5em 0 0 1em;
@@ -98,13 +94,9 @@ nav ul li:hover{
 	border-top-left-radius: 1em;
 	border-bottom-left-radius: 1em;
 	box-shadow: -5px -2px;
-	//float: left;
 }
 .tablist li:hover{
 	cursor: pointer;
-}
-.fieldset-field-div {
-	// position: relative;
 }
 .fieldset-field div fieldset dl dt ul {
 	padding: 0;
