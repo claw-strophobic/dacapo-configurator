@@ -9,7 +9,7 @@
 	<title>XML Test</title>
 	<!-- script src="https://code.jquery.com/jquery-1.10.2.js"></script -->
 	<script type="text/javascript" src="../lib/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="swfobject.js"></script>	
+	<script type="text/javascript" src="../lib/swfobject.js"></script>
 	<link rel="stylesheet" href="configurator.css" type="text/css" />
 </head>
 <body>
@@ -47,6 +47,7 @@
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
 			<div id="version"></div>
+			<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="Save File" onclick="guis.save();">
 		</fieldset>
 		<div>
 			<nav id="menu">
