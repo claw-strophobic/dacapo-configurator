@@ -21,10 +21,10 @@
 			<dd>
 				<input class="field_pos_h" type="number" step="1" max="9999" min="0"/>
 				<input class="field_pos_v" type="number" step="1" max="9999" min="0"/>
-				<span> / </span>
+				<span> &#47; </span>
 				<input class="pic_height" type="number" step="1" max="9999" min="1"/>
 				<input class="pic_width" type="number" step="1" max="9999" min="1"/>
-				<span> / </span>
+				<span> &#47; </span>
 				<select class="field_pos_v_align" >
 					<option class="de" value="top">Oben</option>
 					<option class="de" value="bottom">Unten</option>
