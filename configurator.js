@@ -21,6 +21,12 @@ var labels_eng = {
 
 var labels = {};
 
+var configVersion = '';
+var miscSection = '';
+var syncLyricsSection = '';
+var audioSection = '';
+var debugSection = '';
+
 function FieldProto(name, gui, father) {
 	if (arguments.length == 0) return; // don't do anything
 	var t = this;
@@ -751,11 +757,16 @@ var guis = {
 		return false;
 	},
 	save: function(){
-		var xml = '<dacapo_preferences><gui>';
+		var xml = '<dacapo_preferences><version>'+ configVersion + '</version><gui>';
 		xml += this.window.getXML();
 		xml += this.fullscreen.getXML();
 		xml += this.meta.getXML();
-		xml += '</gui></dacapo_preferences>';
+		xml += '<misc>' + $(miscSection).html() + '</misc>';
+		xml += '<syncLyrics>' + $(syncLyricsSection).html() + '</syncLyrics>';
+		xml += '</gui>';
+		xml += '<audio_engine>' + $(audioSection).html() + '</audio_engine>';
+		xml += '<debug>' + $(debugSection).html() + '</debug>';
+		xml += '</dacapo_preferences>';
 		var dom = $.parseXML(xml);
 		myWindow = window.open("data:application/xml,"
 				+ encodeURIComponent(xml2Str(dom)));
@@ -812,20 +823,9 @@ jQuery(window).ready(function() {
 		labels = labels_eng;
 		$('.de').remove();
 	}
-	// loadXMLData();
 });
 
 
-/*
-	for (f in fields) {
-		if (fields[f].font.fontName) {
-			$("#debug-output").append(f + '  ' + fields[f].font.fontName
-					+ '<br>' + fields[f].font.fontSize + '<br>'
-					+ fields[f].font.fontColor
-					+ fields[f].content + '<br>');
-		}
-	}
-*/
 function listTags(node, father, listnode) {
 	listnode += '<li id="'+father+'-'+$(node)[0].localName +'">'+ $(node)[0].localName;
 	if ($(node).attr('type') && $(node).attr('type') != 'dict') {
@@ -873,6 +873,7 @@ function prepareDoku(obj) {
 	});
 }
 function prepareVersion(obj) {
+	configVersion = $(obj).text();
 	var version = 'Config-Version: <span>' + $(obj).text() + '</span>';
 	$("#version").append(version);
 }
@@ -899,7 +900,6 @@ function populateFontList(fontArr) {
 	var allFontsCounter = 0;
 	var fontSize = '16';
 	instFonts = fontArr;
-	// loadXMLData();
 	if (true === false) {
 		for(var f in instFonts) {
 			var fontName = instFonts[f];
@@ -987,6 +987,10 @@ function loadXMLData(configFile) {
 			prepareVersion($(xml).find('version'));
 			prepareAudioEngine($(xml).find('audio_engine'));
 			prepareDebug($(xml).find('debug'));
+			miscSection = $(xml).find('misc');
+			syncLyricsSection = $(xml).find('syncLyrics');
+			audioSection = $(xml).find('audio_engine');
+			debugSection = $(xml).find('debug');
 
 			guis.window.grabXMLData($(xml).find('gui').find('window'));
 			guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
