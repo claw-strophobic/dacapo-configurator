@@ -6,6 +6,37 @@
 	margin-top: 2em;
 	background-color: darkgrey;
 }
+.menu-icon-wrapper {
+	float: left;
+	position: relative;
+	width: 3em;
+	height: 3em;
+	overflow: hidden;
+}
+#version {
+	float: left;
+	position: relative;
+}
+#inputfile {
+	cursor: pointer;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	position: absolute;
+	width: 3em;
+	height: 3em;
+	overflow: hidden;
+}
+.openicon {
+	background: url("img/open-icon.png") no-repeat;
+	background-size: 3em 3em;
+	background-position: left top;
+}
+.icon {
+	margin: 5px;
+}
+.icon:hover{
+	cursor: pointer;
+}
 .legend-gui,
 .legend-metadata {
 	font-size: 1.5em;

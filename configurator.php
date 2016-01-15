@@ -47,7 +47,13 @@
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
 			<div id="version"></div>
-			<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="Save File" onclick="guis.save();">
+			<div class="menu-icon-wrapper">
+				<img class="save-ico icon" src="img/save-icon.png" height="30" alt="Save File" onclick="guis.save();">
+			</div>
+			<div class="menu-icon-wrapper openicon">
+				<input id="inputfile" name="conf" type="file" size="50" accept="text/*" onchange="guis.open(event);">
+			</div>
+			<!--img class="open-ico icon" src="img/open-icon.png" height="30" alt="Save File" onclick="guis.open();" -->
 		</fieldset>
 		<div>
 			<nav id="menu">

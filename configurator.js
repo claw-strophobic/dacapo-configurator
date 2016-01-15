@@ -2,7 +2,7 @@
 var flashsupport = 'Flash wird unterstützt? ';
 var instFonts;
 var lorem = 'Zwölf Boxkämpfer jagen Viktor \\nquer über den großen Sylter Deich';
-var configFile = "http://localhost/~tkorell/TEST/XML/dacapo.conf";
+//var configFile = "http://localhost/~tkorell/TEST/XML/dacapo.conf";
 
 var labels_deu = {
 	label_field: 'Parameter für das Feld ',
@@ -744,6 +744,12 @@ var guis = {
 	  'margin-right': "2px",
     },
 
+	open: function(event){
+		var files = event.target.files;
+		console.log(files);
+		loadXMLData(files[0]);
+		return false;
+	},
 	save: function(){
 		var xml = '<dacapo_preferences><gui>';
 		xml += this.window.getXML();
@@ -806,7 +812,7 @@ jQuery(window).ready(function() {
 		labels = labels_eng;
 		$('.de').remove();
 	}
-	loadXMLData();
+	// loadXMLData();
 });
 
 
@@ -963,11 +969,11 @@ function xml2Str(xmlNode) {
 }
 
 
-function loadXMLData() {
-	console.log("lade XML...");
+function loadXMLData(configFile) {
+	console.log("lade XML aus: " + configFile.name);
 	$('#lorem').val(lorem);
 	var getData = {
-		url: configFile,
+		url: configFile.name,
 		data: '',
 		success: function( xml ) {
 			var metaliste = $("#meta-fields-list");
