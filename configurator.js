@@ -531,7 +531,7 @@ var FieldPos = function(father) {
 
 	t.origGetXML = t.getXML; // save the baseclass-function
 	t.getXML = function() {
-		var xml = t.origGetHTML(); // call the baseclass-function
+		var xml = t.origGetXML(); // call the baseclass-function
 		if (t.posRefH !== '') {
 			xml += '<posRefH type="text">' + t.posRefH + '</posRefH>';
 		}
