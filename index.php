@@ -6,9 +6,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>XML Test</title>
+	<title>dacapo configurator</title>
 	<!-- script src="https://code.jquery.com/jquery-1.10.2.js"></script -->
-	<script type="text/javascript" src="../lib/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery-2.2.0.min.js"></script>
 	<script type="text/javascript" src="../lib/swfobject.js"></script>
 	<link rel="stylesheet" href="configurator.css" type="text/css" />
 </head>
@@ -22,7 +22,7 @@
 	<!-- nav>
 		<ul class="menubar">
 			<li>
-				<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="Save File" onclick="guis.save();">
+				<img class="save-ico" src="img/save-icon.png" height="30" alt="Save File" onclick="guis.save();">
 			</li>
 			<li>
 				<img class="save-ico" src="img/Arrow-right-icon.png" height="30" 
@@ -107,7 +107,7 @@
 			The "You don't have flash" message. Or any other backup content. 
 		</object>
 	</span>
-<script type="text/javascript" src="configurator.js"></script>
+<script type="text/javascript" src="configurator.js?v=2.4"></script>
 </body>
 
 </html>
