@@ -280,6 +280,7 @@ var Font = function(father, gui) {
 	};
 
 	t.getXML = function() {
+		t.getHTML();
 		var xml = '<font type="text">' + t.fontName + '</font>';
 		xml += '<fontSize type="int">' + t.fontSize + '</fontSize>';
 		xml += '<fontColor type="color">' + hexToRgb(t.fontColor) + '</fontColor>';
@@ -603,14 +604,15 @@ var gui = function(name) {
 	t.background = undefined;
 	t.fields = {};
 	t.lyricFont = new LyricFont(t, t.div);
-	t.fontPos = 0;
 	t.picPos = new PicPos(t);
 
 	t.getXML = function() {
 		var xml = '<' + t.name + '>';
 		xml += '<width type="int">' + t.width + '</width>';
 		xml += '<height type="int">' + t.height + '</height>';
-		xml += '<lyricFontPos type="int">' + t.fontPos + '</lyricFontPos>';
+		xml += '<lyricFontPos type="int">' + t.lyricFont.posV + '</lyricFontPos>';
+		xml += t.lyricFont.orgGetXML();
+		xml += '<backgroundColor type="color">' + hexToRgb(t.background) + '</backgroundColor>'
 		xml += '<fields type="dict">';
 		for(var f in t.fields) {
 			//xml = $.parseXML(t.fields[f].font.getXML());
