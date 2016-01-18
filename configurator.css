@@ -33,6 +33,7 @@
 }
 .icon {
 	margin: 5px;
+	vertical-align: middle;
 }
 .icon:hover{
 	cursor: pointer;
