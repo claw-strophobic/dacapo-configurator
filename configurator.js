@@ -611,6 +611,7 @@ var gui = function(name) {
 	t.picPos = new PicPos(t);
 
 	t.getXML = function() {
+		t.getHTML();
 		var xml = '<' + t.name + '>';
 		xml += '<width type="int">' + t.width + '</width>';
 		xml += '<height type="int">' + t.height + '</height>';
@@ -653,6 +654,13 @@ var gui = function(name) {
 		}
 	};
 
+	t.getHTML = function() {
+		t.height = $('#height-' + t.name).val();
+		t.width = $('#width-' + t.name).val();
+		t.background = t.div.find(".background_color").val();
+		t.mouseVisible = t.div.find(".mouse_visible").prop("checked");
+		return true;
+	}
 	t.grabXMLData = function(xml) {
 		$(xml).children().each(function() {
 			switch($(this)[0].localName.toLowerCase()) {
