@@ -71,7 +71,7 @@
 					</legend>
 					<div>
 						<input id="lorem" type="text"/>
-						<img class="save-ico" src="img/3floppy_unmount.png" height="30" alt="change preview" onclick="guis.changePreview();">
+						<img class="save-ico" src="img/save-icon.png" height="30" alt="change preview" onclick="guis.changePreview();">
 					</div>
 					<?php	require_once dirname(__FILE__) . '/configurator_gui_window.php'; ?>
 					<?php	require_once dirname(__FILE__) . '/configurator_gui_fullscreen.php'; ?>
