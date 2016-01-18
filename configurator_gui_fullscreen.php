@@ -8,11 +8,15 @@
 	</legend>
 	<div id="fullscreen">
 		<dl id="dl-fullscreen">
-			<dt><label for="height-fullscreen">Höhe / Breite / Hintergundfarbe</label></dt>
+			<dt>
+				<label for="height-window" class="de">Höhe / Breite / Hintergundfarbe / Mauszeiger anzeigen</label>
+				<label for="height-window" class="en">Height / Width / Background-color / Show mouse-pointer</label>
+			</dt>
 			<dd>
 				<input id="height-fullscreen" type="number" step="1" max="9999" min="1"/>
 				<input id="width-fullscreen" type="number" step="1" max="9999" min="1"/>
 				<input class="background_color" type="color" onchange="guis.fullscreen.changeBackground()"/>
+				<input class="mouse_visible" type="checkbox"/>
 			</dd>
 			<dt>
 				<label class="de" for="pic-left-window">Bildbereichs im Fullscreen: Linke- & Obere- Position / Max. Breite & Höhe / Ausrichtung</label>
@@ -42,7 +46,10 @@
 					<option class="en" value="center">Center</option>
 				</select>
 			</dd>
-			<dt><label for="lyricfont_size-fullscreen">Position und Schrift für Lyrics (Größe/Farbe/Schrift)</label></dt>
+			<dt>
+				<label for="lyricfont_size-window" class="de">Position und Schrift für Lyrics (Position/Größe/Farbe/Schrift)</label>
+				<label for="lyricfont_size-window" class="en">Position and Font for Lyrics (Position/Size/Color/Font)</label>
+			</dt>
 			<dd>
 				<input class="font_pos" type="number" step="1" max="9999" min="1"/>
 				<input class="font_size" type="number" step="1" max="9999" min="1"/>

@@ -605,6 +605,7 @@ var gui = function(name) {
 	t.height = 0;
 	t.width = 0;
 	t.background = undefined;
+	t.mouseVisible = undefined;
 	t.fields = {};
 	t.lyricFont = new LyricFont(t, t.div);
 	t.picPos = new PicPos(t);
@@ -617,6 +618,7 @@ var gui = function(name) {
 		xml += t.lyricFont.getXML();
 		xml += '</lyricFont>';
 		xml += '<backgroundColor type="color">' + hexToRgb(t.background) + '</backgroundColor>'
+		xml += '<mouseVisible type="boolean">' + t.mouseVisible + '</mouseVisible>'
 		xml += '<fields type="dict">';
 		for(var f in t.fields) {
 			//xml = $.parseXML(t.fields[f].font.getXML());
@@ -663,7 +665,16 @@ var gui = function(name) {
 				case 'backgroundcolor':
 					t.background = rgbToHex($(this).text());
 					break;
+				case 'fields':
+				case 'lyricfont':
+				case 'pictures':
+					break;
 				default:
+					if ($(this).attr('type') && $(this).attr('type') == 'int') {
+						t[$(this)[0].localName] = parseInt($(this).text());
+					} else {
+						t[$(this)[0].localName] = $(this).text();
+					}
 					break;
 			}
 		});
@@ -682,6 +693,7 @@ var gui = function(name) {
 		$('#width-'+name).val(this.width);
 		t.div.find(".background_color").val(this.background);
 		t.div.find(".font_pos").val(this.fontPos);
+		t.div.find(".mouse_visible").val(this.mouseVisible);
 		t.lyricFont.setHTML();
 		t.lyricFont.changePreview();
 		t.setHandler();
