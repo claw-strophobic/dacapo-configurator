@@ -320,7 +320,10 @@ var LyricFont = function(father, gui) {
 	}
 	t.orgGetXML = t.getXML; // save the basis-class-function
 	t.getXML = function() {
-		t.orgGetXML(); // call the basis-class-function
+		var xml = t.orgGetXML(); // call the basis-class-function
+		xml += '<posV type="int">' + t.posV + '</posV>';
+		xml += '<alignH type="text">' + t.alignH + '</alignH>';
+		return xml;
 	}
 }
 LyricFont.prototype = new Font();
@@ -610,8 +613,9 @@ var gui = function(name) {
 		var xml = '<' + t.name + '>';
 		xml += '<width type="int">' + t.width + '</width>';
 		xml += '<height type="int">' + t.height + '</height>';
-		xml += '<lyricFontPos type="int">' + t.lyricFont.posV + '</lyricFontPos>';
-		xml += t.lyricFont.orgGetXML();
+		xml += '<lyricFont>';
+		xml += t.lyricFont.getXML();
+		xml += '</lyricFont>';
 		xml += '<backgroundColor type="color">' + hexToRgb(t.background) + '</backgroundColor>'
 		xml += '<fields type="dict">';
 		for(var f in t.fields) {
