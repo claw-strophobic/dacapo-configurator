@@ -5,8 +5,8 @@
 	<fieldset class="fieldset-meta">
 		<legend class="legend-meta">
 			<span>Feldname</span>
-			<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
-			<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
+			<img class="copy-ico icon" src="img/Paste-icon.png" height="30" alt="Copy Field">
+			<img class="del-ico icon" src="img/delete-file-icon.png" height="30" alt="Delete Field">
 		</legend>
 		<div>
 			<dl>
@@ -42,7 +42,7 @@
 	<fieldset id="metadata-marker" class="hideableTab border-fieldset">
 		<legend class="legend-metadata">
 			<span>MetaData</span>
-			<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
+			<img class="new-ico icon" src="img/new-file-icon.png" height="30" alt="New Field">
 		</legend>
 		<div id="metadata"  >
 			<ul class="tablist">

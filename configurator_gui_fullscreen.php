@@ -4,7 +4,7 @@
 <fieldset id="fullscreen-marker" class="fieldset-gui hideableTab">
 	<legend class="legend-gui">
 		<span>Fullscreen:</span>
-		<img class="new-ico" src="img/new-file-icon.png" height="30" alt="New Field">
+		<img class="new-ico icon" src="img/new-file-icon.png" height="30" alt="New Field">
 	</legend>
 	<div id="fullscreen">
 		<dl id="dl-fullscreen">

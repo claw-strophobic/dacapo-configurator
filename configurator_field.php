@@ -5,8 +5,8 @@
 			<fieldset class="fieldset-field">
 				<legend class="legend-field">
 					<span>Feldname</span>
-					<img class="copy-ico" src="img/Paste-icon.png" height="30" alt="Copy Field">
-					<img class="del-ico" src="img/delete-file-icon.png" height="30" alt="Delete Field">
+					<img class="copy-ico icon" src="img/Paste-icon.png" height="30" alt="Copy Field">
+					<img class="del-ico icon" src="img/delete-file-icon.png" height="30" alt="Delete Field">
 				</legend>
 				<div>
 					<dl>
@@ -17,7 +17,7 @@
 						<dt><label class="de">Inhalt des Feldes</label><label class="en">Content of the field</label></dt>
 						<dd>
 							<input class="content" type="text" />
-							<img class="content-ico" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
+							<img class="content-ico icon" src="img/Left-arrow.png" height="30" alt="Insert Fieldname">
 							<select class="content_helper">
 							</select>
 						</dd>
