@@ -693,7 +693,7 @@ var gui = function(name) {
 		$('#width-'+name).val(this.width);
 		t.div.find(".background_color").val(this.background);
 		t.div.find(".font_pos").val(this.fontPos);
-		t.div.find(".mouse_visible").val(this.mouseVisible);
+		t.div.find(".mouse_visible").prop("checked", this.mouseVisible);
 		t.lyricFont.setHTML();
 		t.lyricFont.changePreview();
 		t.setHandler();
