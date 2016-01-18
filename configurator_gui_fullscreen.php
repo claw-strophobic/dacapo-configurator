@@ -47,14 +47,22 @@
 				</select>
 			</dd>
 			<dt>
-				<label for="lyricfont_size-window" class="de">Position und Schrift für Lyrics (Position/Größe/Farbe/Schrift)</label>
-				<label for="lyricfont_size-window" class="en">Position and Font for Lyrics (Position/Size/Color/Font)</label>
+				<label for="lyricfont_size-window" class="de">Position und Schrift für Lyrics (Position/Größe/Farbe/Schrift/Ausrichtung)</label>
+				<label for="lyricfont_size-window" class="en">Position and Font for Lyrics (Position/Size/Color/Font/Alignment)</label>
 			</dt>
 			<dd>
 				<input class="font_pos" type="number" step="1" max="9999" min="1"/>
 				<input class="font_size" type="number" step="1" max="9999" min="1"/>
 				<input class="font_color" type="color" />
 				<select class="font_name"></select>
+				<select class="font_pos_h_align" >
+					<option class="de" value="left">Links</option>
+					<option class="de" value="right">Rechts</option>
+					<option class="de" value="center">Zentriert</option>
+					<option class="en" value="left">Left</option>
+					<option class="en" value="right">Right</option>
+					<option class="en" value="center">Center</option>
+				</select>
 			</dd>
 			<dd><div class="font_sample lyricfont"></div></dd>
 		</dl>
