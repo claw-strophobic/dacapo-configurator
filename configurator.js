@@ -9,14 +9,16 @@ var labels_deu = {
 	ask_remove: 'Wirklich das Feld: %field% löschen?',
 	ask_copy: 'Name für neues Feld:',
 	ask_save: 'Name für Datei:',
-	not_deletable: 'Dieses Feld lässt sich nicht löschen.'
+	not_deletable: 'Dieses Feld lässt sich nicht löschen.',
+	custom: 'Eigene'
 };
 var labels_eng = {
 	label_field: 'Parameter for the field ',
 	ask_remove: 'Do you really want to remove the field: %field%?',
 	ask_copy: 'The name for the new field:',
 	ask_save: 'Name for File:',
-	not_deletable: 'This field is not deletable.'
+	not_deletable: 'This field is not deletable.',
+	custom: 'Custom'
 };
 
 var labels = {};
@@ -83,6 +85,8 @@ function FieldProto(name, gui, father) {
 					t.father.fields[f].click();
 					break;
 				};
+				$("#meta-fields-list").find('optgroup').first().find("option[value='" + t.name + "']").remove();
+				guis.setFieldHelper();
 			};
 		} else {
 			var str = labels.not_deletable.replace("%field%", t.name);
@@ -99,6 +103,9 @@ function FieldProto(name, gui, father) {
 		}
 	};
 	t.clone = function(newName) {
+		$("#meta-fields-list").find('optgroup').first().append('<option value="' + newName + '">'
+				+ newName + '</option>');
+		guis.setFieldHelper();
 		// Deep copy
 		t.father.fields[newName] = new t.constructor(newName, t.gui, t.father);
 		var cloneObj = t.father.fields[newName];
@@ -118,12 +125,10 @@ function FieldProto(name, gui, father) {
 	};
 	t.setHelper = function() {
 		// Remove old optionlist
-		t.div.find(".content_helper option").each(function() {
-			$(this).remove();
-		});
+		t.div.find(".content_helper").children().remove();
 		// Create new optionlist
-		$("#meta-fields-list option").each(function() {
-			t.div.find(".content_helper").append($(this).clone()); // Add $(this).val() to your list
+		$("#meta-fields-list").each(function() {
+			t.div.find(".content_helper").append($(this).html()); // Add $(this).val() to your list
 		});
 
 	};
@@ -775,7 +780,18 @@ var guis = {
 	  'box-shadow': "5px -2px black",
 	  'margin-right': "2px",
     },
-
+	setFieldHelper: function(){
+		$.each(this.fullscreen.fields, function() {
+			if (typeof this.setHelper !== 'undefined' && $.isFunction(this.setHelper)) {
+				this.setHelper();
+			}
+		});
+		$.each(this.window.fields, function() {
+			if (typeof this.setHelper !== 'undefined' && $.isFunction(this.setHelper)) {
+				this.setHelper();
+			}
+		});
+	},
 	open: function(event){
 		var files = event.target.files;
 		console.log(files);
@@ -1003,10 +1019,11 @@ function loadXMLData(configFile) {
 		data: '',
 		success: function( xml ) {
 			var metaliste = $("#meta-fields-list");
+			metaliste.prepend('<optgroup label="' + labels.custom + '"></optgroup>');
 			$(xml).find('metaData').children().each(function() {
 				if ($(this).attr('type') === 'cond') {
-					metaliste.prepend('<option data-value="' + $(this)[0].localName
-							+ 'artist" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
+					metaliste.find('optgroup').first().append('<option data-value="' + $(this)[0].localName
+							+ '" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
 				}
 			});
 			prepareDoku($(xml).find('doku'));
