@@ -452,7 +452,7 @@ function Field(name, gui, father) {
 		t.div.find(".comments").val(t.comments);
 		t.div.find(".field_pos_h_ref").append(t.getFieldsOptionList('refh'));
 		t.div.find(".field_pos_v_ref").append(t.getFieldsOptionList('refv'));
-		t.div.find(".field_zindex").val(t.zIndex);
+		t.div.find("input[name=field_zindex]").val(t.zIndex);
 		t.div.find('input[name=multiline]').prop('checked', t.multiLine);
 		t.div.find('input[name=splitspaces]').prop('checked', t.splitSpaces);
 		t.div.find('input[name=overlay]').prop('checked', t.overlay);
@@ -490,7 +490,7 @@ function Field(name, gui, father) {
 	t.getHTML = function() {
 		t.content = t.div.find(".content").val();
 		t.comments = t.div.find(".comments").val();
-		t.zIndex = t.div.find(".field_zindex").val();
+		t.zIndex = t.div.find("input[name=field_zindex]").val();
 		t.multiLine = t.div.find('input[name=multiline]').prop('checked');
 		t.splitSpaces = t.div.find('input[name=splitspaces]').prop('checked');
 		t.overlay = t.div.find('input[name=overlay]').prop('checked');
@@ -509,6 +509,7 @@ function Field(name, gui, father) {
 		xml += '<overlay type="boolean">' + t.overlay + '</overlay>';
 		xml += '<splitSpaces type="boolean">' + t.splitSpaces + '</splitSpaces>';
 		xml += '<multiLine type="boolean">' + t.multiLine + '</multiLine>';
+		xml += '<zIndex type="int">' + t.zIndex + '</zIndex>';
 		xml += '</' + t.name + '>';
 		return xml;
 	};
