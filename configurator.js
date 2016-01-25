@@ -396,6 +396,8 @@ function Field(name, gui, father) {
 	t.zIndex = 0;
 	t.pos = new FieldPos(t);
 	t.font = new Font(t, gui);
+	t.maxWidth = 0;
+	t.maxHeight = 0;
 
 	t.getFieldsOptionList = function() {
 		var optionList = '';
@@ -453,6 +455,8 @@ function Field(name, gui, father) {
 		t.div.find(".field_pos_h_ref").append(t.getFieldsOptionList('refh'));
 		t.div.find(".field_pos_v_ref").append(t.getFieldsOptionList('refv'));
 		t.div.find("input[name=field_zindex]").val(t.zIndex);
+		t.div.find("input[name=field_max_width]").val(t.maxWidth);
+		t.div.find("input[name=field_max_height]").val(t.maxHeight);
 		t.div.find('input[name=multiline]').prop('checked', t.multiLine);
 		t.div.find('input[name=splitspaces]').prop('checked', t.splitSpaces);
 		t.div.find('input[name=overlay]').prop('checked', t.overlay);
@@ -491,6 +495,8 @@ function Field(name, gui, father) {
 		t.content = t.div.find(".content").val();
 		t.comments = t.div.find(".comments").val();
 		t.zIndex = t.div.find("input[name=field_zindex]").val();
+		t.maxWidth = t.div.find("input[name=field_max_width]").val();
+		t.maxHeight = t.div.find("input[name=field_max_height]").val();
 		t.multiLine = t.div.find('input[name=multiline]').prop('checked');
 		t.splitSpaces = t.div.find('input[name=splitspaces]').prop('checked');
 		t.overlay = t.div.find('input[name=overlay]').prop('checked');
@@ -510,6 +516,8 @@ function Field(name, gui, father) {
 		xml += '<splitSpaces type="boolean">' + t.splitSpaces + '</splitSpaces>';
 		xml += '<multiLine type="boolean">' + t.multiLine + '</multiLine>';
 		xml += '<zIndex type="int">' + t.zIndex + '</zIndex>';
+		xml += '<maxWidth type="int">' + t.maxWidth + '</maxWidth>';
+		xml += '<maxHeight type="int">' + t.maxHeight + '</maxHeight>';
 		xml += '</' + t.name + '>';
 		return xml;
 	};

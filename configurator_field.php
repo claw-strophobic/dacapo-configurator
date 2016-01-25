@@ -54,7 +54,12 @@
 							</dd>
 							<dt><label class="de">Layerschicht</label><label class="en">Layer position</label></dt>
 							<dd>
-								<input class="field_zindex" type="number" step="1" max="9999" min="0"/>
+								<input name="field_zindex" type="number" step="1" max="9999" min="0"/>
+							</dd>
+							<dt><label class="de">Max Breite/Höhe</label><label class="en">Max width/height</label></dt>
+							<dd>
+								<input name="field_max_width" type="number" step="1" max="9999" min="0"/>
+								<input name="field_max_height" type="number" step="1" max="9999" min="0"/>
 							</dd>
 						</dl>
 					</fieldset>
