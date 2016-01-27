@@ -803,8 +803,7 @@ var guis = {
 	},
 	open: function(event){
 		var files = event.target.files;
-		console.log(files);
-		loadXMLData(files[0]);
+		uploadXMLData(files);
 		return false;
 	},
 	save: function(){
@@ -1019,39 +1018,46 @@ function xml2Str(xmlNode) {
    return false;
 }
 
+function loadXMLData(xml) {
+	console.log("lade XML aus: " + xml);
+	var metaliste = $("#meta-fields-list");
+	metaliste.prepend('<optgroup label="' + labels.custom + '"></optgroup>');
+	$(xml).find('metaData').children().each(function() {
+		if ($(this).attr('type') === 'cond') {
+			metaliste.find('optgroup').first().append('<option data-value="' + $(this)[0].localName
+					+ '" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
+		}
+	});
+	prepareDoku($(xml).find('doku'));
+	prepareVersion($(xml).find('version'));
+	prepareAudioEngine($(xml).find('audio_engine'));
+	prepareDebug($(xml).find('debug'));
+	miscSection = $(xml).find('misc');
+	syncLyricsSection = $(xml).find('syncLyrics');
+	audioSection = $(xml).find('audio_engine');
+	debugSection = $(xml).find('debug');
 
-function loadXMLData(configFile) {
-	console.log("lade XML aus: " + configFile.name);
-	$('#lorem').val(lorem);
-	var getData = {
-		url: configFile.name,
-		data: '',
-		success: function( xml ) {
-			var metaliste = $("#meta-fields-list");
-			metaliste.prepend('<optgroup label="' + labels.custom + '"></optgroup>');
-			$(xml).find('metaData').children().each(function() {
-				if ($(this).attr('type') === 'cond') {
-					metaliste.find('optgroup').first().append('<option data-value="' + $(this)[0].localName
-							+ '" value="' + $(this)[0].localName + '">' + $(this)[0].localName + '</option>');
-				}
-			});
-			prepareDoku($(xml).find('doku'));
-			prepareVersion($(xml).find('version'));
-			prepareAudioEngine($(xml).find('audio_engine'));
-			prepareDebug($(xml).find('debug'));
-			miscSection = $(xml).find('misc');
-			syncLyricsSection = $(xml).find('syncLyrics');
-			audioSection = $(xml).find('audio_engine');
-			debugSection = $(xml).find('debug');
+	guis.window.grabXMLData($(xml).find('gui').find('window'));
+	guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
+	guis.meta.grabXMLData($(xml).find('metaData'));
+	guis.menuClick(1);
+}
 
-			guis.window.grabXMLData($(xml).find('gui').find('window'));
-			guis.fullscreen.grabXMLData($(xml).find('gui').find('fullscreen'));
-			guis.meta.grabXMLData($(xml).find('metaData'));
-			guis.menuClick(1);
-
-		},
-		dataType: 'xml'
-	}
-	$.ajax(getData);
+function uploadXMLData(configFile) {
+	var file_data = $('#inputfile').prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    $.ajax({
+                url: $('input[name=path]').val() + '/configurator_ajax_upload.php', // point to server-side PHP script
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(php_script_response){
+                    loadXMLData(php_script_response); // display response from the PHP script, if any
+                }
+     });
 
 }
