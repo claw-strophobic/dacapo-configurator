@@ -1,6 +1,7 @@
 <?php
 	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
 	require_once dirname(__FILE__) . '/configurator_field.php';
+	$CONFIG['baseurl'] = 'http://'.@$_SERVER['HTTP_HOST'].'/~tkorell/TEST/XML';
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,6 +21,7 @@
 	</noscript>
 
 	<form>
+		<input type="hidden" name="path" value="<?php echo $CONFIG['baseurl'] ?>">
 		<div id="debug-output"></div>
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
