@@ -1048,6 +1048,7 @@ function uploadXMLData(configFile) {
 	var file_data = $('#inputfile').prop('files')[0];
     var form_data = new FormData();
     form_data.append('file', file_data);
+	form_data.append('mode', 'upload');
     $.ajax({
                 url: $('input[name=path]').val() + '/configurator_ajax_upload.php', // point to server-side PHP script
                 dataType: 'text',  // what to expect back from the PHP script, if anything
