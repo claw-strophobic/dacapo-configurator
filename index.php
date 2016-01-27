@@ -25,7 +25,7 @@
 		<div id="debug-output"></div>
 		<div id="doku" class="hidden"><ul></ul></div>
 		<fieldset>
-			<div id="version"></div>
+			<div id="version">Config-Version: <span></span></div>
 			<div class="menu-icon-wrapper">
 				<img class="save-ico icon" src="img/save-icon.png" height="30" alt="Save File" onclick="guis.save();">
 			</div>

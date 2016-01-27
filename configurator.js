@@ -925,8 +925,8 @@ function prepareDoku(obj) {
 }
 function prepareVersion(obj) {
 	configVersion = $(obj).text();
-	var version = 'Config-Version: <span>' + $(obj).text() + '</span>';
-	$("#version").append(version);
+	var version = $(obj).text();
+	$("#version").find('span').text(version);
 }
 function prepareAudioEngine(obj) {
 	$(obj).children().each(function() {
