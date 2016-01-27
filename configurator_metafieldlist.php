@@ -1,6 +1,11 @@
 <?php
 ?>
 	<datalist id="meta-fields-list">
+		<optgroup label="Specials">
+			<option data-value="BANDLOGO" value="BANDLOGO">BANDLOGO</option>
+			<option data-value="if_playlist" value="if_playlist">if_playlist</option>
+			<option data-value="if_discNr" value="BANDLOGO">if_discNr</option>
+		</optgroup>
 		<optgroup label="Standard">
 			<option data-value="ARTIST" value="ARTIST">ARTIST</option>
 			<option data-value="COMPOSER" value="COMPOSER">COMPOSER</option>
