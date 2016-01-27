@@ -806,7 +806,8 @@ var guis = {
 		return false;
 	},
 	save: function(){
-		var xml = '<dacapo_preferences><version>'+ configVersion + '</version><gui>';
+		var xml = "<?xml version='1.0' encoding='UTF-8'?>";
+		xml += '<dacapo_preferences><version>'+ configVersion + '</version><gui>';
 		xml += this.window.getXML();
 		xml += this.fullscreen.getXML();
 		xml += this.meta.getXML();
@@ -817,16 +818,11 @@ var guis = {
 		xml += '<debug>' + $(debugSection).html() + '</debug>';
 		xml += '</dacapo_preferences>';
 		var dom = $.parseXML(xml);
-		myWindow = window.open("data:application/xml,"
-				+ encodeURIComponent(xml2Str(dom)));
-		//myWindow = window.open("data:text/xml," + encodeURIComponent(xml2Str(dom)),
-        //               "_blank", "width=200,height=100");
-		myWindow.focus();
+		downloadXMLData(xml2Str(dom));
 		return false;
 	},
 	changePreview: function() {
 		lorem = $('#lorem').val();
-		console.log("andere preview mit:" + lorem);
 		this.window.changeBackground();
 		this.fullscreen.changeBackground();
 	},
@@ -1019,7 +1015,6 @@ function xml2Str(xmlNode) {
 }
 
 function loadXMLData(xml) {
-	console.log("lade XML aus: " + xml);
 	var metaliste = $("#meta-fields-list");
 	metaliste.prepend('<optgroup label="' + labels.custom + '"></optgroup>');
 	$(xml).find('metaData').children().each(function() {
@@ -1058,6 +1053,26 @@ function uploadXMLData() {
                 type: 'post',
                 success: function(php_script_response){
                     loadXMLData(php_script_response); // display response from the PHP script, if any
+                }
+     });
+
+}
+
+function downloadXMLData(xml) {
+    var form_data = new FormData();
+    form_data.append('xml', xml);
+	form_data.append('mode', 'download');
+    $.ajax({
+                url: $('input[name=path]').val() + '/configurator_ajax_upload.php', // point to server-side PHP script
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(php_script_response){
+					myWindow = window.open("data:text/xml/force-download,"
+					+ encodeURIComponent(php_script_response));
                 }
      });
 
