@@ -19,29 +19,6 @@
 		</div>
 	</noscript>
 
-	<!-- nav>
-		<ul class="menubar">
-			<li>
-				<img class="save-ico" src="img/save-icon.png" height="30" alt="Save File" onclick="guis.save();">
-			</li>
-			<li>
-				<img class="save-ico" src="img/Arrow-right-icon.png" height="30" 
-					 title="Scroll to the window-section"
-					 alt="Scroll to the window-section" onclick="jumpTo('#window-marker');">
-			</li>
-			<li>
-				<img class="save-ico" src="img/Arrow-right-icon.png" height="30"
-					 title="Scroll to the fullscreen-section"
-					 alt="Scroll to the fullscreen-section" onclick="jumpTo('#fullscreen-marker');">
-			</li>
-			<li>
-				<img class="save-ico" src="img/Arrow-right-icon.png" height="30"
-					 title="Scroll to the metaData-section"
-					 alt="Scroll to the metaData-section" onclick="jumpTo('#metadata-marker');">
-			</li>
-		</ul>
-
-	</nav -->
 	<form>
 		<div id="debug-output"></div>
 		<div id="doku" class="hidden"><ul></ul></div>
@@ -53,7 +30,6 @@
 			<div class="menu-icon-wrapper openicon">
 				<input id="inputfile" name="conf" type="file" size="50" accept="text/*" onchange="guis.open(event);">
 			</div>
-			<!--img class="open-ico icon" src="img/open-icon.png" height="30" alt="Save File" onclick="guis.open();" -->
 		</fieldset>
 		<div>
 			<nav id="menu">
