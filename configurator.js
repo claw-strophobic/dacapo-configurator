@@ -873,6 +873,7 @@ jQuery(window).ready(function() {
 		labels = labels_eng;
 		$('.de').remove();
 	}
+	$("#lorem").val(lorem);
 });
 
 
