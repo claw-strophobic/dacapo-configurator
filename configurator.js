@@ -802,8 +802,7 @@ var guis = {
 		});
 	},
 	open: function(event){
-		var files = event.target.files;
-		uploadXMLData(files);
+		uploadXMLData();
 		return false;
 	},
 	save: function(){
@@ -1044,7 +1043,7 @@ function loadXMLData(xml) {
 	guis.menuClick(1);
 }
 
-function uploadXMLData(configFile) {
+function uploadXMLData() {
 	var file_data = $('#inputfile').prop('files')[0];
     var form_data = new FormData();
     form_data.append('file', file_data);
