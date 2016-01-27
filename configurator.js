@@ -763,7 +763,7 @@ var MetaData = function() {
 
 	t.grabXMLData = function(xml) {
 		$(xml).children().each(function() {
-			if (!t.fields[$(this)[0].localName] && $(this)[0].localName !== 'MP3-Tags') {
+			if (!t.fields[$(this)[0].localName] && $(this)[0].localName.toLowerCase() !== 'mp3-tags') {
 				t.fields[$(this)[0].localName] = new MetaField($(this)[0].localName, t.div, t);
 				t.fields[$(this)[0].localName].grabXMLData(this);
 				t.fields[$(this)[0].localName].click();
