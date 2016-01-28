@@ -89,3 +89,7 @@
 </body>
 
 </html>
+<?php
+	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
+	require_once dirname(__FILE__) . '/configurator_field.php';
+?>
