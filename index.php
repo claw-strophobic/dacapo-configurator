@@ -1,6 +1,4 @@
 <?php
-	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
-	require_once dirname(__FILE__) . '/configurator_field.php';
 	$CONFIG['baseurl'] = 'http://'.@$_SERVER['HTTP_HOST'].'/~tkorell/TEST/XML';
 ?>
 <!doctype html>
@@ -89,3 +87,7 @@
 </body>
 
 </html>
+<?php
+	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
+	require_once dirname(__FILE__) . '/configurator_field.php';
+?>
