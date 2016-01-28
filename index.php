@@ -1,7 +1,7 @@
 <?php
 	require_once dirname(__FILE__) . '/configurator_metafieldlist.php';
 	require_once dirname(__FILE__) . '/configurator_field.php';
-	$CONFIG['baseurl'] = 'http://'.@$_SERVER['HTTP_HOST'].'/~tkorell/TEST/XML';
+	$CONFIG['baseurl'] = 'http://'.@$_SERVER['HTTP_HOST'].'/dacapo-configurator/';
 ?>
 <!doctype html>
 <html lang="en">
