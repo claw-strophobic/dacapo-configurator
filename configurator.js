@@ -1054,7 +1054,8 @@ function uploadXMLData() {
                 data: form_data,
                 type: 'post',
                 success: function(php_script_response){
-                    loadXMLData(php_script_response); // display response from the PHP script, if any
+					var dom = $.parseXML(php_script_response);
+					loadXMLData(dom); // display response from the PHP script, if any
                 }
      });
 

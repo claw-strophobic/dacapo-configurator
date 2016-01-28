@@ -16,8 +16,7 @@ if(isset($_REQUEST['mode'])) {
 
 function upload() {
 	if(isset($_FILES['file'])) {
-		$content = readfile($_FILES['file']['tmp_name']);
-		echo $content;
+		readfile($_FILES['file']['tmp_name']);
 	}
 	return;
 }
