@@ -802,6 +802,7 @@ var guis = {
 		});
 	},
 	open: function(event){
+		loadXMLData();
 		uploadXMLData();
 		return false;
 	},
@@ -869,6 +870,7 @@ jQuery(window).ready(function() {
 		$('.de').remove();
 	}
 	$("#lorem").val(lorem);
+	loadXMLData();
 });
 
 
