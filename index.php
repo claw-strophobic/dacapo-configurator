@@ -13,11 +13,28 @@
 </head>
 <body>
 	<noscript>
-		<div style="display:block;background:red;color:white;padding:10px;font-weight:bold;">
+		<div class="de" style="display:block;background:red;color:white;padding:10px;font-weight:bold;">
 			JavaScript wird für diese Seite benötigt!
 		</div>
+		<div class="en" style="display:block;background:red;color:white;padding:10px;font-weight:bold;">
+			Please enable JavaScript for this site!
+		</div>
 	</noscript>
-
+	<span id="objectspan">
+		<object id="fontListSWF" name="fontListSWF"
+				type="application/x-shockwave-flash"
+				data="./FontList.swf" width="1" height="1"
+			>
+			<param name="movie" value="./FontList.swf">
+			<embed src="./FontList.swf" width="1" height="1" />
+			<div class="en no-flash">
+				The "You don't have flash" message. Or any other backup content.
+			</div>
+			<div class="de no-flash">
+				Du hast kein Flash installiert oder aktiviert. Somit steht Dir die Schriftauswahl nicht zur Verfügung.
+			</div>
+		</object>
+	</span>
 	<form>
 		<input type="hidden" name="path" value="<?php echo $CONFIG['baseurl'] ?>">
 		<div id="debug-output"></div>
@@ -73,16 +90,7 @@
 	<ul id="tag-list">
 	</ul>
 	<div id="message_output"></div>
-	<span id="objectspan">
-		<object id="fontListSWF" name="fontListSWF"
-				type="application/x-shockwave-flash"
-				data="./FontList.swf" width="1" height="1"
-			>
-			<param name="movie" value="./FontList.swf">
-			<embed src="./FontList.swf" width="1" height="1" />
-			The "You don't have flash" message. Or any other backup content. 
-		</object>
-	</span>
+	
 <script type="text/javascript" src="configurator.js?v=2.4"></script>
 </body>
 

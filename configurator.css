@@ -146,3 +146,12 @@ span.ext_state_spec_text {margin-left: 1em; margin-right: 1em;}
 	width: 30%;
 	height: 2em;
 }
+
+.no-flash {
+	float: left;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: 2.5em;
+	height: 2em;
+}
