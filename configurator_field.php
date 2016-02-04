@@ -54,7 +54,10 @@
 							</dd>
 							<dt><label class="de">Layerschicht</label><label class="en">Layer position</label></dt>
 							<dd>
-								<input name="field_zindex" type="number" step="1" max="9999" min="0"/>
+								<input name="field_zindex" class="de" type="number" step="1" max="9999" min="0"
+									   title='Je höher dieser Wert, desto "weiter oben" liegt das Feld. Hilfreich, um z.B. Felder übereinander zu lagern. Standardwert = 0.'/>
+								<input name="field_zindex" class="en" type="number" step="1" max="9999" min="0"
+									   title='The higher this value the "more on top" is the field. Helpful if you want to overlay fields. Default = 0.'/>
 							</dd>
 							<dt><label class="de">Max Breite/Höhe</label><label class="en">Max width/height</label></dt>
 							<dd>
